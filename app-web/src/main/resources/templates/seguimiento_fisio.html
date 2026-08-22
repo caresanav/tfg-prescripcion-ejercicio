@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Seguimiento fisioterapéutico</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="page">
+    <div class="container">
+
+        <div class="header">
+            <h1>Seguimiento fisioterapéutico</h1>
+            <p>Valoración de la evolución del paciente.</p>
+        </div>
+
+        <div class="card">
+            <h2>Entrenamiento actual</h2>
+
+            <div class="info-block">
+                <p class="info-row">
+                    <strong>Plan:</strong>
+                    <span th:text="${entrenamiento.nombrePlan ?: '-'}">
+                        -
+                    </span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Duración:</strong>
+                    <span th:text="${entrenamiento.duracionSemanas ?: '-'}">
+                        -
+                    </span>
+                    semanas
+                </p>
+
+                <p class="info-row">
+                    <strong>Frecuencia:</strong>
+                    <span th:text="${entrenamiento.frecuenciaSemanal ?: '-'}">
+                        -
+                    </span>
+                    días por semana
+                </p>
+
+                <p class="info-row"
+                   style="white-space: pre-line;">
+                    <strong>Ejercicios:</strong><br>
+                    <span th:text="${entrenamiento.ejerciciosSeleccionados ?: '-'}">
+                        -
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <form th:action="@{/tasks/{id}/seguimiento-fisio(id=${id})}"
+              th:object="${seguimientoFisio}"
+              method="post">
+
+            <div class="card">
+                <h2>Valoración del seguimiento</h2>
+
+                <div class="form-group">
+                    <label>Dolor actual (0-10)</label>
+                    <input type="number"
+                           min="0"
+                           max="10"
+                           th:field="*{dolorActual}"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Adherencia al entrenamiento (%)</label>
+                    <input type="number"
+                           min="0"
+                           max="100"
+                           th:field="*{adherenciaPorcentaje}"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Evolución del paciente</label>
+                    <textarea th:field="*{evolucion}"
+                              rows="4"
+                              required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Incidencias</label>
+                    <textarea th:field="*{incidencias}"
+                              rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Observaciones</label>
+                    <textarea th:field="*{observaciones}"
+                              rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Decisiones del seguimiento</h2>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox"
+                               th:field="*{requiereSeguimientoMedico}">
+                        Requiere seguimiento médico
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox"
+                               th:field="*{cambiaPrescripcion}">
+                        Es necesario cambiar la prescripción
+                    </label>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">
+                        Completar seguimiento
+                    </button>
+
+                    <a th:href="@{/tasks}" class="btn btn-secondary">
+                        Volver a tareas
+                    </a>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

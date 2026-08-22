@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fisioterapeuta 2</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="page">
+    <div class="container">
+
+        <div class="header">
+            <h1>Área del Fisioterapeuta 2</h1>
+            <p>Diseño del entrenamiento final del paciente</p>
+        </div>
+
+        <div class="card">
+            <h2>Acciones disponibles</h2>
+
+            <div class="actions">
+                <a th:href="@{/tasks}" class="btn btn-primary">
+                    Ver mis tareas
+                </a>
+
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-outline">
+                        Cerrar sesión
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Responsabilidades de este rol</h2>
+
+            <div class="info-block">
+                <p class="info-row">
+                    <strong>Diseño de entrenamiento:</strong>
+                    crear el plan final de ejercicios a partir de la evaluación física y la prescripción física.
+                </p>
+
+                <p class="info-row">
+                    <strong>Datos visibles:</strong>
+                    este rol debe ver la evaluación física y la prescripción, pero no la evaluación médica.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

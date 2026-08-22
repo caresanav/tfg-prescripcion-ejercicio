@@ -1,0 +1,1003 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_C7THMIUvEfG0C_hBZia8og" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+  <bpmn2:itemDefinition id="_evaluacionFisicaItem" structureRef="com.tfg.EvaluacionFisica"/>
+  <bpmn2:itemDefinition id="_evaluacionMedicaItem" structureRef="com.tfg.EvaluacionMedica"/>
+  <bpmn2:itemDefinition id="_prescripcionFisicaItem" structureRef="com.tfg.PrescripcionFisica"/>
+  <bpmn2:itemDefinition id="_entrenamientoItem" structureRef="com.tfg.Entrenamiento"/>
+  <bpmn2:itemDefinition id="_seguimientoMedicoItem" structureRef="com.tfg.SeguimientoMedico"/>
+  <bpmn2:itemDefinition id="_seguimientoFisioItem" structureRef="com.tfg.SeguimientoFisio"/>
+  <bpmn2:itemDefinition id="_cambiaPrescripcionItem" structureRef="Boolean"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_SkippableInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_PriorityInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_CommentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_DescriptionInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_CreatedByInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_TaskNameInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_GroupIdInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_ContentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_NotStartedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_NotCompletedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_NotStartedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_NotCompletedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_evaluacionFisicaInputXItem" structureRef="com.tfg.EvaluacionFisica"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_prescripcionFisicaInputXItem" structureRef="com.tfg.PrescripcionFisica"/>
+  <bpmn2:itemDefinition id="__53EC62FF-9BA4-4783-956D-33F823F0F651_entrenamientoOutputXItem" structureRef="com.tfg.Entrenamiento"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_SkippableInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_PriorityInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_CommentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_DescriptionInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_CreatedByInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_TaskNameInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_GroupIdInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_ContentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_NotStartedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_NotCompletedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_NotStartedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_NotCompletedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_entrenamientoInputXItem" structureRef="com.tfg.Entrenamiento"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_seguimientoFisioOutputXItem" structureRef="com.tfg.SeguimientoFisio"/>
+  <bpmn2:itemDefinition id="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_cambiaPrescripcionOutputXItem" structureRef="Boolean"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_SkippableInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_PriorityInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_CommentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_DescriptionInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_CreatedByInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_TaskNameInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_GroupIdInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_ContentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_NotStartedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_NotCompletedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_NotStartedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_NotCompletedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_evaluacionMedicaInputXItem" structureRef="com.tfg.EvaluacionMedica"/>
+  <bpmn2:itemDefinition id="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_evaluacionFisicaOutputXItem" structureRef="com.tfg.EvaluacionFisica"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_SkippableInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_PriorityInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_CommentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_DescriptionInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_CreatedByInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_TaskNameInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_GroupIdInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_ContentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_NotStartedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_NotCompletedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_NotStartedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_NotCompletedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_evaluacionFisicaInputXItem" structureRef="com.tfg.EvaluacionFisica"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_evaluacionMedicaInputXItem" structureRef="com.tfg.EvaluacionMedica"/>
+  <bpmn2:itemDefinition id="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_prescripcionFisicaOutputXItem" structureRef="com.tfg.PrescripcionFisica"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_SkippableInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_PriorityInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_CommentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_DescriptionInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_CreatedByInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_TaskNameInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_GroupIdInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_ContentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_NotStartedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_NotCompletedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_NotStartedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_NotCompletedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_evaluacionMedicaInputXItem" structureRef="com.tfg.EvaluacionMedica"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_seguimientoFisioInputXItem" structureRef="com.tfg.SeguimientoFisio"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_seguimientoMedicoOutputXItem" structureRef="com.tfg.SeguimientoMedico"/>
+  <bpmn2:itemDefinition id="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_cambiaPrescripcionOutputXItem" structureRef="Boolean"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_SkippableInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_PriorityInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_CommentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_DescriptionInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_CreatedByInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_TaskNameInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_GroupIdInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_ContentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_NotStartedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_NotCompletedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_NotStartedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_NotCompletedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_entrenamientoInputXItem" structureRef="com.tfg.Entrenamiento"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_SkippableInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_PriorityInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_CommentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_DescriptionInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_CreatedByInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_TaskNameInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_GroupIdInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_ContentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_NotStartedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_NotCompletedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_NotStartedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_NotCompletedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_evaluacionMedicaOutputXItem" structureRef="com.tfg.EvaluacionMedica"/>
+  <bpmn2:process id="exercise-prescription.PrescripcionEjercicio" drools:packageName="com.tfg" drools:version="1.0" drools:adHoc="false" name="PrescripcionEjercicio" isExecutable="true" processType="Public">
+    <bpmn2:property id="evaluacionFisica" itemSubjectRef="_evaluacionFisicaItem" name="evaluacionFisica"/>
+    <bpmn2:property id="evaluacionMedica" itemSubjectRef="_evaluacionMedicaItem" name="evaluacionMedica"/>
+    <bpmn2:property id="prescripcionFisica" itemSubjectRef="_prescripcionFisicaItem" name="prescripcionFisica"/>
+    <bpmn2:property id="entrenamiento" itemSubjectRef="_entrenamientoItem" name="entrenamiento"/>
+    <bpmn2:property id="seguimientoMedico" itemSubjectRef="_seguimientoMedicoItem" name="seguimientoMedico"/>
+    <bpmn2:property id="seguimientoFisio" itemSubjectRef="_seguimientoFisioItem" name="seguimientoFisio"/>
+    <bpmn2:property id="cambiaPrescripcion" itemSubjectRef="_cambiaPrescripcionItem" name="cambiaPrescripcion"/>
+    <bpmn2:sequenceFlow id="_5DC92DF9-6CC5-4C27-B19C-53E53AE300D5" name="¿Necesita continuar?" sourceRef="_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1" targetRef="_0554EF7A-EF2E-4F56-93EF-04754B2EB2BC">
+      <bpmn2:extensionElements>
+        <drools:metaData name="isAutoConnection.target">
+          <drools:metaValue><![CDATA[true]]></drools:metaValue>
+        </drools:metaData>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[¿Necesita continuar?]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_3F1157DD-72EC-42DB-A932-5B79770DE63C" name="SI" sourceRef="_36A9C31A-764E-4F0A-97E0-DB4638850F90" targetRef="_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1">
+      <bpmn2:extensionElements>
+        <drools:metaData name="isAutoConnection.target">
+          <drools:metaValue><![CDATA[true]]></drools:metaValue>
+        </drools:metaData>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[SI]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_C7TuQIUvEfG0C_hBZia8og" language="http://www.mvel.org/2.0"><![CDATA[seguimientoFisio.requiereSeguimientoMedico == true]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_34D4D93F-42B7-4185-8B71-7C07A0ACD3C2" sourceRef="_D994D261-C949-4968-9142-162A82F1E071" targetRef="_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00">
+      <bpmn2:extensionElements>
+        <drools:metaData name="isAutoConnection.target">
+          <drools:metaValue><![CDATA[true]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_119901BD-8DC9-4280-BA06-1833F5A78037" name="NO" sourceRef="_872AFB5C-EF8C-4BB1-82F3-943A222A96EC" targetRef="_A0912B7D-BA60-44DF-9406-49E50DF17BFE">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[NO]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_0BC1622B-4BB3-4C0F-B249-F23F5497F095" name="¿Necesita revisión fisio?" sourceRef="_929B368D-049E-4E43-ADD1-D3DDEBE8A57F" targetRef="_872AFB5C-EF8C-4BB1-82F3-943A222A96EC">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[¿Necesita revisión fisio?]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_0645B8E9-C99F-4E08-B6F4-6850DFA90871" sourceRef="_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A" targetRef="_D994D261-C949-4968-9142-162A82F1E071"/>
+    <bpmn2:sequenceFlow id="_1ED26870-3166-4C9F-981E-708F2AEC43FC" name="SI" sourceRef="_872AFB5C-EF8C-4BB1-82F3-943A222A96EC" targetRef="_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[SI]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_C7TuQYUvEfG0C_hBZia8og" language="http://www.mvel.org/2.0"><![CDATA[evaluacionMedica.necesitaRevisionFisioterapeuta == true
+]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_2CAF296A-0381-4B9B-95B6-9C475106B1A4" name="NO" sourceRef="_36A9C31A-764E-4F0A-97E0-DB4638850F90" targetRef="_AF1EABE7-6C43-4E6A-A55D-6FF4E512CF0E">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[NO]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_7E256392-0259-471A-BEFD-FCB9A0F48E2B" name="¿Cambia prescripción?" sourceRef="_0554EF7A-EF2E-4F56-93EF-04754B2EB2BC" targetRef="_AF1EABE7-6C43-4E6A-A55D-6FF4E512CF0E">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[¿Cambia prescripción?]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_C7TuQoUvEfG0C_hBZia8og" language="http://www.mvel.org/2.0"><![CDATA[seguimientoMedico.necesitaContinuar == true]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_9CD2F4E9-16A4-4B8D-B97E-B3BEC5285FDB" sourceRef="_54FA5C33-F6B2-4868-A255-C6EB73DA12AB" targetRef="_E2D930A5-FAD5-424A-BED9-1310F2B58204"/>
+    <bpmn2:sequenceFlow id="_B9FF0E87-032E-4755-A056-838C20B02F71" name="NO" sourceRef="_0554EF7A-EF2E-4F56-93EF-04754B2EB2BC" targetRef="_E33DACD9-7113-4FC1-B218-E3D02CD13ABB">
+      <bpmn2:extensionElements>
+        <drools:metaData name="isAutoConnection.target">
+          <drools:metaValue><![CDATA[true]]></drools:metaValue>
+        </drools:metaData>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[NO]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_819FEACC-A9A6-4B44-898B-E65C6538D7D4" sourceRef="_B2118DFE-2B0A-47F3-A25A-B17BF0B092C1" targetRef="_929B368D-049E-4E43-ADD1-D3DDEBE8A57F">
+      <bpmn2:extensionElements>
+        <drools:metaData name="isAutoConnection.target">
+          <drools:metaValue><![CDATA[true]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_D64EE2F6-6720-4277-A92E-4CA235FC1468" name="SI" sourceRef="_C36149C1-89C6-4256-A848-3A91DD015B01" targetRef="_D994D261-C949-4968-9142-162A82F1E071">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[SI]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_C7TuQ4UvEfG0C_hBZia8og" language="http://www.java.com/java"><![CDATA[return KieFunctions.isTrue(cambiaPrescripcion);]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_BC048C5E-5499-46D4-A597-885195E234C7" name="NO" sourceRef="_C36149C1-89C6-4256-A848-3A91DD015B01" targetRef="_E2D930A5-FAD5-424A-BED9-1310F2B58204">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[NO]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_C7TuRIUvEfG0C_hBZia8og" language="http://www.java.com/java"><![CDATA[return KieFunctions.isFalse(cambiaPrescripcion);]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_8334DFA1-8137-4266-9CC6-EB3CA5C74171" sourceRef="_AF1EABE7-6C43-4E6A-A55D-6FF4E512CF0E" targetRef="_C36149C1-89C6-4256-A848-3A91DD015B01"/>
+    <bpmn2:sequenceFlow id="_6366295A-CE3A-4582-B137-35682A8FD2C3" name="¿Seguimiento médico?" sourceRef="_E2835CDD-D1AC-464A-9C5E-3E8C6178632B" targetRef="_36A9C31A-764E-4F0A-97E0-DB4638850F90">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[¿Seguimiento médico?]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_26B3F5C3-29D9-4958-930E-5A9A1A07C924" sourceRef="_E2D930A5-FAD5-424A-BED9-1310F2B58204" targetRef="_E2835CDD-D1AC-464A-9C5E-3E8C6178632B">
+      <bpmn2:extensionElements>
+        <drools:metaData name="isAutoConnection.target">
+          <drools:metaValue><![CDATA[true]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_862F5407-A667-42EF-BE88-866B1D50008B" sourceRef="_53EC62FF-9BA4-4783-956D-33F823F0F651" targetRef="_54FA5C33-F6B2-4868-A255-C6EB73DA12AB"/>
+    <bpmn2:sequenceFlow id="_2BE71DFE-0F2A-4346-B53A-1F605DE8DDB0" sourceRef="_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00" targetRef="_53EC62FF-9BA4-4783-956D-33F823F0F651">
+      <bpmn2:extensionElements>
+        <drools:metaData name="isAutoConnection.target">
+          <drools:metaValue><![CDATA[true]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
+    <bpmn2:userTask id="_929B368D-049E-4E43-ADD1-D3DDEBE8A57F" name="Evaluación médica">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Evaluación médica]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_819FEACC-A9A6-4B44-898B-E65C6538D7D4</bpmn2:incoming>
+      <bpmn2:outgoing>_0BC1622B-4BB3-4C0F-B249-F23F5497F095</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_C7TuRYUvEfG0C_hBZia8og">
+        <bpmn2:dataInput id="_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_TaskNameInputX" drools:dtype="Object" itemSubjectRef="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_TaskNameInputXItem" name="TaskName"/>
+        <bpmn2:dataInput id="_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_SkippableInputX" drools:dtype="Object" itemSubjectRef="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_SkippableInputXItem" name="Skippable"/>
+        <bpmn2:dataInput id="_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_GroupIdInputX" drools:dtype="Object" itemSubjectRef="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_GroupIdInputXItem" name="GroupId"/>
+        <bpmn2:dataOutput id="_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_evaluacionMedicaOutputX" drools:dtype="com.tfg.EvaluacionMedica" itemSubjectRef="__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_evaluacionMedicaOutputXItem" name="evaluacionMedica"/>
+        <bpmn2:inputSet id="_C7TuRoUvEfG0C_hBZia8og">
+          <bpmn2:dataInputRefs>_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_TaskNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_SkippableInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_GroupIdInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_C7TuR4UvEfG0C_hBZia8og">
+          <bpmn2:dataOutputRefs>_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_evaluacionMedicaOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_C7TuSIUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7TuSYUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7TuSoUvEfG0C_hBZia8og"><![CDATA[Task]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7TuS4UvEfG0C_hBZia8og">_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7TuTIUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_SkippableInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7TuTYUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7TuToUvEfG0C_hBZia8og"><![CDATA[false]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7TuT4UvEfG0C_hBZia8og">_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_SkippableInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7TuUIUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_GroupIdInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7TuUYUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7TuUoUvEfG0C_hBZia8og"><![CDATA[medico,kie-server]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7TuU4UvEfG0C_hBZia8og">_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_GroupIdInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_C7TuVIUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>_929B368D-049E-4E43-ADD1-D3DDEBE8A57F_evaluacionMedicaOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>evaluacionMedica</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="_9ac3319e-76c1-4f8d-a6b4-a1087b424a62">
+        <bpmn2:resourceAssignmentExpression id="_C7TuVYUvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7TuVoUvEfG0C_hBZia8og">medico</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+      <bpmn2:potentialOwner id="_04235f2f-4544-4e39-a8a5-821acd4128a2">
+        <bpmn2:resourceAssignmentExpression id="_C7TuV4UvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7TuWIUvEfG0C_hBZia8og">wbadmin</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:exclusiveGateway id="_36A9C31A-764E-4F0A-97E0-DB4638850F90" drools:dg="_2CAF296A-0381-4B9B-95B6-9C475106B1A4" gatewayDirection="Diverging" default="_2CAF296A-0381-4B9B-95B6-9C475106B1A4">
+      <bpmn2:incoming>_6366295A-CE3A-4582-B137-35682A8FD2C3</bpmn2:incoming>
+      <bpmn2:outgoing>_2CAF296A-0381-4B9B-95B6-9C475106B1A4</bpmn2:outgoing>
+      <bpmn2:outgoing>_3F1157DD-72EC-42DB-A932-5B79770DE63C</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:userTask id="_54FA5C33-F6B2-4868-A255-C6EB73DA12AB" name="Subir entrenamiento">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Subir entrenamiento]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_862F5407-A667-42EF-BE88-866B1D50008B</bpmn2:incoming>
+      <bpmn2:outgoing>_9CD2F4E9-16A4-4B8D-B97E-B3BEC5285FDB</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_C7TuWYUvEfG0C_hBZia8og">
+        <bpmn2:dataInput id="_54FA5C33-F6B2-4868-A255-C6EB73DA12AB_TaskNameInputX" drools:dtype="Object" itemSubjectRef="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_TaskNameInputXItem" name="TaskName"/>
+        <bpmn2:dataInput id="_54FA5C33-F6B2-4868-A255-C6EB73DA12AB_entrenamientoInputX" drools:dtype="com.tfg.Entrenamiento" itemSubjectRef="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_entrenamientoInputXItem" name="entrenamiento"/>
+        <bpmn2:dataInput id="_54FA5C33-F6B2-4868-A255-C6EB73DA12AB_SkippableInputX" drools:dtype="Object" itemSubjectRef="__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_SkippableInputXItem" name="Skippable"/>
+        <bpmn2:inputSet id="_C7TuWoUvEfG0C_hBZia8og">
+          <bpmn2:dataInputRefs>_54FA5C33-F6B2-4868-A255-C6EB73DA12AB_TaskNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_54FA5C33-F6B2-4868-A255-C6EB73DA12AB_entrenamientoInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_54FA5C33-F6B2-4868-A255-C6EB73DA12AB_SkippableInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_C7TuW4UvEfG0C_hBZia8og"/>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_C7TuXIUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_54FA5C33-F6B2-4868-A255-C6EB73DA12AB_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7TuXYUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7TuXoUvEfG0C_hBZia8og"><![CDATA[Task]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7TuX4UvEfG0C_hBZia8og">_54FA5C33-F6B2-4868-A255-C6EB73DA12AB_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7TuYIUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>entrenamiento</bpmn2:sourceRef>
+        <bpmn2:targetRef>_54FA5C33-F6B2-4868-A255-C6EB73DA12AB_entrenamientoInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7TuYYUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_54FA5C33-F6B2-4868-A255-C6EB73DA12AB_SkippableInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7TuYoUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7TuY4UvEfG0C_hBZia8og"><![CDATA[false]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7TuZIUvEfG0C_hBZia8og">_54FA5C33-F6B2-4868-A255-C6EB73DA12AB_SkippableInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:potentialOwner id="_a9740e19-7204-494b-811c-16cd53e23c7d">
+        <bpmn2:resourceAssignmentExpression id="_C7TuZYUvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UVUIUvEfG0C_hBZia8og">fisio2</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+      <bpmn2:potentialOwner id="_4d79d647-a562-42ce-8f8f-4fa18cbff4d9">
+        <bpmn2:resourceAssignmentExpression id="_C7UVUYUvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UVUoUvEfG0C_hBZia8og">wbadmin</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:exclusiveGateway id="_0554EF7A-EF2E-4F56-93EF-04754B2EB2BC" drools:dg="_B9FF0E87-032E-4755-A056-838C20B02F71" gatewayDirection="Diverging" default="_B9FF0E87-032E-4755-A056-838C20B02F71">
+      <bpmn2:incoming>_5DC92DF9-6CC5-4C27-B19C-53E53AE300D5</bpmn2:incoming>
+      <bpmn2:outgoing>_B9FF0E87-032E-4755-A056-838C20B02F71</bpmn2:outgoing>
+      <bpmn2:outgoing>_7E256392-0259-471A-BEFD-FCB9A0F48E2B</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_D994D261-C949-4968-9142-162A82F1E071" drools:dg="_34D4D93F-42B7-4185-8B71-7C07A0ACD3C2" gatewayDirection="Converging" default="_34D4D93F-42B7-4185-8B71-7C07A0ACD3C2">
+      <bpmn2:incoming>_D64EE2F6-6720-4277-A92E-4CA235FC1468</bpmn2:incoming>
+      <bpmn2:incoming>_0645B8E9-C99F-4E08-B6F4-6850DFA90871</bpmn2:incoming>
+      <bpmn2:outgoing>_34D4D93F-42B7-4185-8B71-7C07A0ACD3C2</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:userTask id="_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1" name="Seguimiento médico">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Seguimiento médico]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_3F1157DD-72EC-42DB-A932-5B79770DE63C</bpmn2:incoming>
+      <bpmn2:outgoing>_5DC92DF9-6CC5-4C27-B19C-53E53AE300D5</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_C7UVU4UvEfG0C_hBZia8og">
+        <bpmn2:dataInput id="_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_TaskNameInputX" drools:dtype="Object" itemSubjectRef="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_TaskNameInputXItem" name="TaskName"/>
+        <bpmn2:dataInput id="_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_evaluacionMedicaInputX" drools:dtype="com.tfg.EvaluacionMedica" itemSubjectRef="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_evaluacionMedicaInputXItem" name="evaluacionMedica"/>
+        <bpmn2:dataInput id="_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_seguimientoFisioInputX" drools:dtype="com.tfg.SeguimientoFisio" itemSubjectRef="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_seguimientoFisioInputXItem" name="seguimientoFisio"/>
+        <bpmn2:dataInput id="_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_SkippableInputX" drools:dtype="Object" itemSubjectRef="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_SkippableInputXItem" name="Skippable"/>
+        <bpmn2:dataOutput id="_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_seguimientoMedicoOutputX" drools:dtype="com.tfg.SeguimientoMedico" itemSubjectRef="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_seguimientoMedicoOutputXItem" name="seguimientoMedico"/>
+        <bpmn2:dataOutput id="_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_cambiaPrescripcionOutputX" drools:dtype="Boolean" itemSubjectRef="__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_cambiaPrescripcionOutputXItem" name="cambiaPrescripcion"/>
+        <bpmn2:inputSet id="_C7UVVIUvEfG0C_hBZia8og">
+          <bpmn2:dataInputRefs>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_TaskNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_evaluacionMedicaInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_seguimientoFisioInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_SkippableInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_C7UVVYUvEfG0C_hBZia8og">
+          <bpmn2:dataOutputRefs>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_seguimientoMedicoOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_cambiaPrescripcionOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_C7UVVoUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7UVV4UvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7UVWIUvEfG0C_hBZia8og"><![CDATA[Task]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7UVWYUvEfG0C_hBZia8og">_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVWoUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>evaluacionMedica</bpmn2:sourceRef>
+        <bpmn2:targetRef>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_evaluacionMedicaInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVW4UvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>seguimientoFisio</bpmn2:sourceRef>
+        <bpmn2:targetRef>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_seguimientoFisioInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVXIUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_SkippableInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7UVXYUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7UVXoUvEfG0C_hBZia8og"><![CDATA[false]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7UVX4UvEfG0C_hBZia8og">_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_SkippableInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_C7UVYIUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_seguimientoMedicoOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>seguimientoMedico</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_C7UVYYUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_cambiaPrescripcionOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>cambiaPrescripcion</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="_fcec70a8-7b6f-4338-a464-259a9c434f44">
+        <bpmn2:resourceAssignmentExpression id="_C7UVYoUvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UVY4UvEfG0C_hBZia8og">wbadmin</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+      <bpmn2:potentialOwner id="_dc4ef84a-9f69-4db6-9c6c-9229eab7db06">
+        <bpmn2:resourceAssignmentExpression id="_C7UVZIUvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UVZYUvEfG0C_hBZia8og">medico</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00" name="Prescripción física">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Prescripción física]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_34D4D93F-42B7-4185-8B71-7C07A0ACD3C2</bpmn2:incoming>
+      <bpmn2:outgoing>_2BE71DFE-0F2A-4346-B53A-1F605DE8DDB0</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_C7UVZoUvEfG0C_hBZia8og">
+        <bpmn2:dataInput id="_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_TaskNameInputX" drools:dtype="Object" itemSubjectRef="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_TaskNameInputXItem" name="TaskName"/>
+        <bpmn2:dataInput id="_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_evaluacionFisicaInputX" drools:dtype="com.tfg.EvaluacionFisica" itemSubjectRef="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_evaluacionFisicaInputXItem" name="evaluacionFisica"/>
+        <bpmn2:dataInput id="_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_evaluacionMedicaInputX" drools:dtype="com.tfg.EvaluacionMedica" itemSubjectRef="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_evaluacionMedicaInputXItem" name="evaluacionMedica"/>
+        <bpmn2:dataInput id="_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_SkippableInputX" drools:dtype="Object" itemSubjectRef="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_SkippableInputXItem" name="Skippable"/>
+        <bpmn2:dataOutput id="_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_prescripcionFisicaOutputX" drools:dtype="com.tfg.PrescripcionFisica" itemSubjectRef="__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_prescripcionFisicaOutputXItem" name="prescripcionFisica"/>
+        <bpmn2:inputSet id="_C7UVZ4UvEfG0C_hBZia8og">
+          <bpmn2:dataInputRefs>_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_TaskNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_evaluacionFisicaInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_evaluacionMedicaInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_SkippableInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_C7UVaIUvEfG0C_hBZia8og">
+          <bpmn2:dataOutputRefs>_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_prescripcionFisicaOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_C7UVaYUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7UVaoUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7UVa4UvEfG0C_hBZia8og"><![CDATA[Task]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7UVbIUvEfG0C_hBZia8og">_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVbYUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>evaluacionFisica</bpmn2:sourceRef>
+        <bpmn2:targetRef>_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_evaluacionFisicaInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVboUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>evaluacionMedica</bpmn2:sourceRef>
+        <bpmn2:targetRef>_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_evaluacionMedicaInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVb4UvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_SkippableInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7UVcIUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7UVcYUvEfG0C_hBZia8og"><![CDATA[false]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7UVcoUvEfG0C_hBZia8og">_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_SkippableInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_C7UVc4UvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_prescripcionFisicaOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>prescripcionFisica</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="_cdfb3d8f-1293-4620-8b3c-5494ddbf40f9">
+        <bpmn2:resourceAssignmentExpression id="_C7UVdIUvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UVdYUvEfG0C_hBZia8og">wbadmin</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+      <bpmn2:potentialOwner id="_04d76efd-d571-47e3-8446-4b606eb8985e">
+        <bpmn2:resourceAssignmentExpression id="_C7UVdoUvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UVd4UvEfG0C_hBZia8og">fisio1</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="_A0912B7D-BA60-44DF-9406-49E50DF17BFE">
+      <bpmn2:incoming>_119901BD-8DC9-4280-BA06-1833F5A78037</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:exclusiveGateway id="_872AFB5C-EF8C-4BB1-82F3-943A222A96EC" drools:dg="_119901BD-8DC9-4280-BA06-1833F5A78037" gatewayDirection="Diverging" default="_119901BD-8DC9-4280-BA06-1833F5A78037">
+      <bpmn2:incoming>_0BC1622B-4BB3-4C0F-B249-F23F5497F095</bpmn2:incoming>
+      <bpmn2:outgoing>_1ED26870-3166-4C9F-981E-708F2AEC43FC</bpmn2:outgoing>
+      <bpmn2:outgoing>_119901BD-8DC9-4280-BA06-1833F5A78037</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:userTask id="_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A" name="Evaluación física">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Evaluación física]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_1ED26870-3166-4C9F-981E-708F2AEC43FC</bpmn2:incoming>
+      <bpmn2:outgoing>_0645B8E9-C99F-4E08-B6F4-6850DFA90871</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_C7UVeIUvEfG0C_hBZia8og">
+        <bpmn2:dataInput id="_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_TaskNameInputX" drools:dtype="Object" itemSubjectRef="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_TaskNameInputXItem" name="TaskName"/>
+        <bpmn2:dataInput id="_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_evaluacionMedicaInputX" drools:dtype="com.tfg.EvaluacionMedica" itemSubjectRef="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_evaluacionMedicaInputXItem" name="evaluacionMedica"/>
+        <bpmn2:dataInput id="_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_SkippableInputX" drools:dtype="Object" itemSubjectRef="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_SkippableInputXItem" name="Skippable"/>
+        <bpmn2:dataOutput id="_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_evaluacionFisicaOutputX" drools:dtype="com.tfg.EvaluacionFisica" itemSubjectRef="__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_evaluacionFisicaOutputXItem" name="evaluacionFisica"/>
+        <bpmn2:inputSet id="_C7UVeYUvEfG0C_hBZia8og">
+          <bpmn2:dataInputRefs>_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_TaskNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_evaluacionMedicaInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_SkippableInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_C7UVeoUvEfG0C_hBZia8og">
+          <bpmn2:dataOutputRefs>_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_evaluacionFisicaOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_C7UVe4UvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7UVfIUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7UVfYUvEfG0C_hBZia8og"><![CDATA[Task]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7UVfoUvEfG0C_hBZia8og">_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVf4UvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>evaluacionMedica</bpmn2:sourceRef>
+        <bpmn2:targetRef>_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_evaluacionMedicaInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVgIUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_SkippableInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7UVgYUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7UVgoUvEfG0C_hBZia8og"><![CDATA[false]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7UVg4UvEfG0C_hBZia8og">_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_SkippableInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_C7UVhIUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_evaluacionFisicaOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>evaluacionFisica</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="_fcb6cdfd-253d-4707-b0e4-3b1b95d53a7e">
+        <bpmn2:resourceAssignmentExpression id="_C7UVhYUvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UVhoUvEfG0C_hBZia8og">wbadmin</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+      <bpmn2:potentialOwner id="_4ab6e533-2d7f-4623-b6ff-2121d18977d0">
+        <bpmn2:resourceAssignmentExpression id="_C7UVh4UvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UViIUvEfG0C_hBZia8og">fisio1</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:exclusiveGateway id="_AF1EABE7-6C43-4E6A-A55D-6FF4E512CF0E" drools:dg="_8334DFA1-8137-4266-9CC6-EB3CA5C74171" gatewayDirection="Converging" default="_8334DFA1-8137-4266-9CC6-EB3CA5C74171">
+      <bpmn2:incoming>_7E256392-0259-471A-BEFD-FCB9A0F48E2B</bpmn2:incoming>
+      <bpmn2:incoming>_2CAF296A-0381-4B9B-95B6-9C475106B1A4</bpmn2:incoming>
+      <bpmn2:outgoing>_8334DFA1-8137-4266-9CC6-EB3CA5C74171</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_E2D930A5-FAD5-424A-BED9-1310F2B58204" drools:dg="_26B3F5C3-29D9-4958-930E-5A9A1A07C924" gatewayDirection="Converging" default="_26B3F5C3-29D9-4958-930E-5A9A1A07C924">
+      <bpmn2:incoming>_BC048C5E-5499-46D4-A597-885195E234C7</bpmn2:incoming>
+      <bpmn2:incoming>_9CD2F4E9-16A4-4B8D-B97E-B3BEC5285FDB</bpmn2:incoming>
+      <bpmn2:outgoing>_26B3F5C3-29D9-4958-930E-5A9A1A07C924</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:endEvent id="_E33DACD9-7113-4FC1-B218-E3D02CD13ABB">
+      <bpmn2:incoming>_B9FF0E87-032E-4755-A056-838C20B02F71</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:startEvent id="_B2118DFE-2B0A-47F3-A25A-B17BF0B092C1">
+      <bpmn2:outgoing>_819FEACC-A9A6-4B44-898B-E65C6538D7D4</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:exclusiveGateway id="_C36149C1-89C6-4256-A848-3A91DD015B01" drools:dg="_BC048C5E-5499-46D4-A597-885195E234C7" gatewayDirection="Diverging" default="_BC048C5E-5499-46D4-A597-885195E234C7">
+      <bpmn2:incoming>_8334DFA1-8137-4266-9CC6-EB3CA5C74171</bpmn2:incoming>
+      <bpmn2:outgoing>_BC048C5E-5499-46D4-A597-885195E234C7</bpmn2:outgoing>
+      <bpmn2:outgoing>_D64EE2F6-6720-4277-A92E-4CA235FC1468</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:userTask id="_E2835CDD-D1AC-464A-9C5E-3E8C6178632B" name="Seguimiento fisioterapéutico">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Seguimiento fisioterapéutico]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_26B3F5C3-29D9-4958-930E-5A9A1A07C924</bpmn2:incoming>
+      <bpmn2:outgoing>_6366295A-CE3A-4582-B137-35682A8FD2C3</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_C7UViYUvEfG0C_hBZia8og">
+        <bpmn2:dataInput id="_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_TaskNameInputX" drools:dtype="Object" itemSubjectRef="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_TaskNameInputXItem" name="TaskName"/>
+        <bpmn2:dataInput id="_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_entrenamientoInputX" drools:dtype="com.tfg.Entrenamiento" itemSubjectRef="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_entrenamientoInputXItem" name="entrenamiento"/>
+        <bpmn2:dataInput id="_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_SkippableInputX" drools:dtype="Object" itemSubjectRef="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_SkippableInputXItem" name="Skippable"/>
+        <bpmn2:dataOutput id="_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_seguimientoFisioOutputX" drools:dtype="com.tfg.SeguimientoFisio" itemSubjectRef="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_seguimientoFisioOutputXItem" name="seguimientoFisio"/>
+        <bpmn2:dataOutput id="_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_cambiaPrescripcionOutputX" drools:dtype="Boolean" itemSubjectRef="__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_cambiaPrescripcionOutputXItem" name="cambiaPrescripcion"/>
+        <bpmn2:inputSet id="_C7UVioUvEfG0C_hBZia8og">
+          <bpmn2:dataInputRefs>_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_TaskNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_entrenamientoInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_SkippableInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_C7UVi4UvEfG0C_hBZia8og">
+          <bpmn2:dataOutputRefs>_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_seguimientoFisioOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_cambiaPrescripcionOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_C7UVjIUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7UVjYUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7UVjoUvEfG0C_hBZia8og"><![CDATA[Task]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7UVj4UvEfG0C_hBZia8og">_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVkIUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>entrenamiento</bpmn2:sourceRef>
+        <bpmn2:targetRef>_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_entrenamientoInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVkYUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_SkippableInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7UVkoUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7UVk4UvEfG0C_hBZia8og"><![CDATA[false]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7UVlIUvEfG0C_hBZia8og">_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_SkippableInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_C7UVlYUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_seguimientoFisioOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>seguimientoFisio</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_C7UVloUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>_E2835CDD-D1AC-464A-9C5E-3E8C6178632B_cambiaPrescripcionOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>cambiaPrescripcion</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="_cba02047-4d19-4ca2-8d0e-facd3f153a85">
+        <bpmn2:resourceAssignmentExpression id="_C7UVl4UvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UVmIUvEfG0C_hBZia8og">fisio1</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+      <bpmn2:potentialOwner id="_57f88307-52de-45fe-b007-56d294e9f2b7">
+        <bpmn2:resourceAssignmentExpression id="_C7UVmYUvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UVmoUvEfG0C_hBZia8og">wbadmin</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="_53EC62FF-9BA4-4783-956D-33F823F0F651" name="Diseño de entrenamiento">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Diseño de entrenamiento]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_2BE71DFE-0F2A-4346-B53A-1F605DE8DDB0</bpmn2:incoming>
+      <bpmn2:outgoing>_862F5407-A667-42EF-BE88-866B1D50008B</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_C7UVm4UvEfG0C_hBZia8og">
+        <bpmn2:dataInput id="_53EC62FF-9BA4-4783-956D-33F823F0F651_TaskNameInputX" drools:dtype="Object" itemSubjectRef="__53EC62FF-9BA4-4783-956D-33F823F0F651_TaskNameInputXItem" name="TaskName"/>
+        <bpmn2:dataInput id="_53EC62FF-9BA4-4783-956D-33F823F0F651_evaluacionFisicaInputX" drools:dtype="com.tfg.EvaluacionFisica" itemSubjectRef="__53EC62FF-9BA4-4783-956D-33F823F0F651_evaluacionFisicaInputXItem" name="evaluacionFisica"/>
+        <bpmn2:dataInput id="_53EC62FF-9BA4-4783-956D-33F823F0F651_prescripcionFisicaInputX" drools:dtype="com.tfg.PrescripcionFisica" itemSubjectRef="__53EC62FF-9BA4-4783-956D-33F823F0F651_prescripcionFisicaInputXItem" name="prescripcionFisica"/>
+        <bpmn2:dataInput id="_53EC62FF-9BA4-4783-956D-33F823F0F651_SkippableInputX" drools:dtype="Object" itemSubjectRef="__53EC62FF-9BA4-4783-956D-33F823F0F651_SkippableInputXItem" name="Skippable"/>
+        <bpmn2:dataOutput id="_53EC62FF-9BA4-4783-956D-33F823F0F651_entrenamientoOutputX" drools:dtype="com.tfg.Entrenamiento" itemSubjectRef="__53EC62FF-9BA4-4783-956D-33F823F0F651_entrenamientoOutputXItem" name="entrenamiento"/>
+        <bpmn2:inputSet id="_C7UVnIUvEfG0C_hBZia8og">
+          <bpmn2:dataInputRefs>_53EC62FF-9BA4-4783-956D-33F823F0F651_TaskNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_53EC62FF-9BA4-4783-956D-33F823F0F651_evaluacionFisicaInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_53EC62FF-9BA4-4783-956D-33F823F0F651_prescripcionFisicaInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_53EC62FF-9BA4-4783-956D-33F823F0F651_SkippableInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_C7UVnYUvEfG0C_hBZia8og">
+          <bpmn2:dataOutputRefs>_53EC62FF-9BA4-4783-956D-33F823F0F651_entrenamientoOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_C7UVnoUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_53EC62FF-9BA4-4783-956D-33F823F0F651_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7UVn4UvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7UVoIUvEfG0C_hBZia8og"><![CDATA[Task]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7UVoYUvEfG0C_hBZia8og">_53EC62FF-9BA4-4783-956D-33F823F0F651_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVooUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>evaluacionFisica</bpmn2:sourceRef>
+        <bpmn2:targetRef>_53EC62FF-9BA4-4783-956D-33F823F0F651_evaluacionFisicaInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVo4UvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>prescripcionFisica</bpmn2:sourceRef>
+        <bpmn2:targetRef>_53EC62FF-9BA4-4783-956D-33F823F0F651_prescripcionFisicaInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_C7UVpIUvEfG0C_hBZia8og">
+        <bpmn2:targetRef>_53EC62FF-9BA4-4783-956D-33F823F0F651_SkippableInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_C7UVpYUvEfG0C_hBZia8og">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_C7UVpoUvEfG0C_hBZia8og"><![CDATA[false]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_C7UVp4UvEfG0C_hBZia8og">_53EC62FF-9BA4-4783-956D-33F823F0F651_SkippableInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_C7UVqIUvEfG0C_hBZia8og">
+        <bpmn2:sourceRef>_53EC62FF-9BA4-4783-956D-33F823F0F651_entrenamientoOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>entrenamiento</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="_68acf894-6991-4345-9b16-faf662091c42">
+        <bpmn2:resourceAssignmentExpression id="_C7UVqYUvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UVqoUvEfG0C_hBZia8og">wbadmin</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+      <bpmn2:potentialOwner id="_66ee2e26-b8a6-4606-a434-a00934b6dbeb">
+        <bpmn2:resourceAssignmentExpression id="_C7UVq4UvEfG0C_hBZia8og">
+          <bpmn2:formalExpression id="_C7UVrIUvEfG0C_hBZia8og">fisio2</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="_C7UVrYUvEfG0C_hBZia8og">
+    <bpmndi:BPMNPlane id="_C7UVroUvEfG0C_hBZia8og" bpmnElement="exercise-prescription.PrescripcionEjercicio">
+      <bpmndi:BPMNShape id="shape__53EC62FF-9BA4-4783-956D-33F823F0F651" bpmnElement="_53EC62FF-9BA4-4783-956D-33F823F0F651">
+        <dc:Bounds height="102.0" width="154.0" x="938.0" y="377.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__E2835CDD-D1AC-464A-9C5E-3E8C6178632B" bpmnElement="_E2835CDD-D1AC-464A-9C5E-3E8C6178632B">
+        <dc:Bounds height="93.66669" width="184.0" x="1214.0" y="577.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__C36149C1-89C6-4256-A848-3A91DD015B01" bpmnElement="_C36149C1-89C6-4256-A848-3A91DD015B01">
+        <dc:Bounds height="56.0" width="56.0" x="503.0" y="756.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__B2118DFE-2B0A-47F3-A25A-B17BF0B092C1" bpmnElement="_B2118DFE-2B0A-47F3-A25A-B17BF0B092C1">
+        <dc:Bounds height="56.0" width="56.0" x="133.0" y="69.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__E33DACD9-7113-4FC1-B218-E3D02CD13ABB" bpmnElement="_E33DACD9-7113-4FC1-B218-E3D02CD13ABB">
+        <dc:Bounds height="56.0" width="56.0" x="307.0" y="600.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__E2D930A5-FAD5-424A-BED9-1310F2B58204" bpmnElement="_E2D930A5-FAD5-424A-BED9-1310F2B58204">
+        <dc:Bounds height="56.0" width="56.0" x="1456.3334" y="596.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__AF1EABE7-6C43-4E6A-A55D-6FF4E512CF0E" bpmnElement="_AF1EABE7-6C43-4E6A-A55D-6FF4E512CF0E">
+        <dc:Bounds height="56.0" width="56.0" x="745.0" y="756.3333"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A" bpmnElement="_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A">
+        <dc:Bounds height="102.0" width="154.0" x="356.0" y="377.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__872AFB5C-EF8C-4BB1-82F3-943A222A96EC" bpmnElement="_872AFB5C-EF8C-4BB1-82F3-943A222A96EC">
+        <dc:Bounds height="56.0" width="56.0" x="405.0" y="223.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__A0912B7D-BA60-44DF-9406-49E50DF17BFE" bpmnElement="_A0912B7D-BA60-44DF-9406-49E50DF17BFE">
+        <dc:Bounds height="56.0" width="56.0" x="745.0" y="223.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00" bpmnElement="_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00">
+        <dc:Bounds height="102.0" width="154.0" x="647.0" y="377.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1" bpmnElement="_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1">
+        <dc:Bounds height="102.0" width="154.0" x="696.0" y="577.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__D994D261-C949-4968-9142-162A82F1E071" bpmnElement="_D994D261-C949-4968-9142-162A82F1E071">
+        <dc:Bounds height="56.0" width="56.0" x="405.0" y="518.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__0554EF7A-EF2E-4F56-93EF-04754B2EB2BC" bpmnElement="_0554EF7A-EF2E-4F56-93EF-04754B2EB2BC">
+        <dc:Bounds height="56.0" width="56.0" x="503.0" y="600.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__54FA5C33-F6B2-4868-A255-C6EB73DA12AB" bpmnElement="_54FA5C33-F6B2-4868-A255-C6EB73DA12AB">
+        <dc:Bounds height="102.0" width="154.0" x="1229.0" y="377.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__36A9C31A-764E-4F0A-97E0-DB4638850F90" bpmnElement="_36A9C31A-764E-4F0A-97E0-DB4638850F90">
+        <dc:Bounds height="56.0" width="56.0" x="987.0" y="599.50867"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__929B368D-049E-4E43-ADD1-D3DDEBE8A57F" bpmnElement="_929B368D-049E-4E43-ADD1-D3DDEBE8A57F">
+        <dc:Bounds height="102.0" width="154.0" x="356.0" y="46.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_shape__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00_to_shape__53EC62FF-9BA4-4783-956D-33F823F0F651" bpmnElement="_2BE71DFE-0F2A-4346-B53A-1F605DE8DDB0">
+        <di:waypoint xsi:type="dc:Point" x="724.0" y="428.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1015.0" y="377.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__53EC62FF-9BA4-4783-956D-33F823F0F651_to_shape__54FA5C33-F6B2-4868-A255-C6EB73DA12AB" bpmnElement="_862F5407-A667-42EF-BE88-866B1D50008B">
+        <di:waypoint xsi:type="dc:Point" x="1015.0" y="428.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1229.0" y="428.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__E2D930A5-FAD5-424A-BED9-1310F2B58204_to_shape__E2835CDD-D1AC-464A-9C5E-3E8C6178632B" bpmnElement="_26B3F5C3-29D9-4958-930E-5A9A1A07C924">
+        <di:waypoint xsi:type="dc:Point" x="1484.3334" y="624.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1398.0" y="623.8333"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__E2835CDD-D1AC-464A-9C5E-3E8C6178632B_to_shape__36A9C31A-764E-4F0A-97E0-DB4638850F90" bpmnElement="_6366295A-CE3A-4582-B137-35682A8FD2C3">
+        <di:waypoint xsi:type="dc:Point" x="1306.0" y="623.8333"/>
+        <di:waypoint xsi:type="dc:Point" x="1015.0" y="627.50867"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__AF1EABE7-6C43-4E6A-A55D-6FF4E512CF0E_to_shape__C36149C1-89C6-4256-A848-3A91DD015B01" bpmnElement="_8334DFA1-8137-4266-9CC6-EB3CA5C74171">
+        <di:waypoint xsi:type="dc:Point" x="773.0" y="784.3333"/>
+        <di:waypoint xsi:type="dc:Point" x="559.0" y="784.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__C36149C1-89C6-4256-A848-3A91DD015B01_to_shape__E2D930A5-FAD5-424A-BED9-1310F2B58204" bpmnElement="_BC048C5E-5499-46D4-A597-885195E234C7">
+        <di:waypoint xsi:type="dc:Point" x="531.0" y="784.0"/>
+        <di:waypoint xsi:type="dc:Point" x="531.0" y="861.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1484.3334" y="861.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1484.3334" y="652.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__C36149C1-89C6-4256-A848-3A91DD015B01_to_shape__D994D261-C949-4968-9142-162A82F1E071" bpmnElement="_D64EE2F6-6720-4277-A92E-4CA235FC1468">
+        <di:waypoint xsi:type="dc:Point" x="531.0" y="784.0"/>
+        <di:waypoint xsi:type="dc:Point" x="200.0" y="784.0"/>
+        <di:waypoint xsi:type="dc:Point" x="200.0" y="546.0"/>
+        <di:waypoint xsi:type="dc:Point" x="290.66666" y="546.0"/>
+        <di:waypoint xsi:type="dc:Point" x="290.66666" y="546.0"/>
+        <di:waypoint xsi:type="dc:Point" x="405.0" y="546.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__B2118DFE-2B0A-47F3-A25A-B17BF0B092C1_to_shape__929B368D-049E-4E43-ADD1-D3DDEBE8A57F" bpmnElement="_819FEACC-A9A6-4B44-898B-E65C6538D7D4">
+        <di:waypoint xsi:type="dc:Point" x="161.0" y="97.0"/>
+        <di:waypoint xsi:type="dc:Point" x="356.0" y="97.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__0554EF7A-EF2E-4F56-93EF-04754B2EB2BC_to_shape__E33DACD9-7113-4FC1-B218-E3D02CD13ABB" bpmnElement="_B9FF0E87-032E-4755-A056-838C20B02F71">
+        <di:waypoint xsi:type="dc:Point" x="531.0" y="628.0"/>
+        <di:waypoint xsi:type="dc:Point" x="363.0" y="628.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__54FA5C33-F6B2-4868-A255-C6EB73DA12AB_to_shape__E2D930A5-FAD5-424A-BED9-1310F2B58204" bpmnElement="_9CD2F4E9-16A4-4B8D-B97E-B3BEC5285FDB">
+        <di:waypoint xsi:type="dc:Point" x="1306.0" y="428.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1485.3334" y="428.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1484.3334" y="596.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__0554EF7A-EF2E-4F56-93EF-04754B2EB2BC_to_shape__AF1EABE7-6C43-4E6A-A55D-6FF4E512CF0E" bpmnElement="_7E256392-0259-471A-BEFD-FCB9A0F48E2B">
+        <di:waypoint xsi:type="dc:Point" x="531.0" y="628.0"/>
+        <di:waypoint xsi:type="dc:Point" x="531.0" y="714.0"/>
+        <di:waypoint xsi:type="dc:Point" x="773.0" y="714.0"/>
+        <di:waypoint xsi:type="dc:Point" x="773.0" y="756.3333"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__36A9C31A-764E-4F0A-97E0-DB4638850F90_to_shape__AF1EABE7-6C43-4E6A-A55D-6FF4E512CF0E" bpmnElement="_2CAF296A-0381-4B9B-95B6-9C475106B1A4">
+        <di:waypoint xsi:type="dc:Point" x="1015.0" y="627.50867"/>
+        <di:waypoint xsi:type="dc:Point" x="1015.0" y="784.3333"/>
+        <di:waypoint xsi:type="dc:Point" x="1015.0" y="784.3333"/>
+        <di:waypoint xsi:type="dc:Point" x="801.0" y="784.3333"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__872AFB5C-EF8C-4BB1-82F3-943A222A96EC_to_shape__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A" bpmnElement="_1ED26870-3166-4C9F-981E-708F2AEC43FC">
+        <di:waypoint xsi:type="dc:Point" x="433.0" y="251.0"/>
+        <di:waypoint xsi:type="dc:Point" x="434.0" y="305.0"/>
+        <di:waypoint xsi:type="dc:Point" x="433.0" y="343.0"/>
+        <di:waypoint xsi:type="dc:Point" x="433.0" y="377.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A_to_shape__D994D261-C949-4968-9142-162A82F1E071" bpmnElement="_0645B8E9-C99F-4E08-B6F4-6850DFA90871">
+        <di:waypoint xsi:type="dc:Point" x="433.0" y="428.0"/>
+        <di:waypoint xsi:type="dc:Point" x="433.0" y="518.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__929B368D-049E-4E43-ADD1-D3DDEBE8A57F_to_shape__872AFB5C-EF8C-4BB1-82F3-943A222A96EC" bpmnElement="_0BC1622B-4BB3-4C0F-B249-F23F5497F095">
+        <di:waypoint xsi:type="dc:Point" x="433.0" y="97.0"/>
+        <di:waypoint xsi:type="dc:Point" x="433.0" y="223.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__872AFB5C-EF8C-4BB1-82F3-943A222A96EC_to_shape__A0912B7D-BA60-44DF-9406-49E50DF17BFE" bpmnElement="_119901BD-8DC9-4280-BA06-1833F5A78037">
+        <di:waypoint xsi:type="dc:Point" x="461.0" y="251.0"/>
+        <di:waypoint xsi:type="dc:Point" x="605.0" y="251.0"/>
+        <di:waypoint xsi:type="dc:Point" x="745.0" y="251.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__D994D261-C949-4968-9142-162A82F1E071_to_shape__4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00" bpmnElement="_34D4D93F-42B7-4185-8B71-7C07A0ACD3C2">
+        <di:waypoint xsi:type="dc:Point" x="433.0" y="546.0"/>
+        <di:waypoint xsi:type="dc:Point" x="724.0" y="545.9946"/>
+        <di:waypoint xsi:type="dc:Point" x="724.0" y="479.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__36A9C31A-764E-4F0A-97E0-DB4638850F90_to_shape__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1" bpmnElement="_3F1157DD-72EC-42DB-A932-5B79770DE63C">
+        <di:waypoint xsi:type="dc:Point" x="1015.0" y="627.50867"/>
+        <di:waypoint xsi:type="dc:Point" x="850.0" y="628.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__09F185C1-A7F5-450B-BDC1-FDEC68A28BC1_to_shape__0554EF7A-EF2E-4F56-93EF-04754B2EB2BC" bpmnElement="_5DC92DF9-6CC5-4C27-B19C-53E53AE300D5">
+        <di:waypoint xsi:type="dc:Point" x="773.0" y="628.0"/>
+        <di:waypoint xsi:type="dc:Point" x="559.0" y="628.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmn2:relationship id="_C7U8YIUvEfG0C_hBZia8og" type="BPSimData">
+    <bpmn2:extensionElements>
+      <bpsim:BPSimData>
+        <bpsim:Scenario xsi:type="bpsim:Scenario" id="default" name="Simulationscenario">
+          <bpsim:ScenarioParameters xsi:type="bpsim:ScenarioParameters"/>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_53EC62FF-9BA4-4783-956D-33F823F0F651" id="_C7U8YYUvEfG0C_hBZia8og">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters xsi:type="bpsim:ResourceParameters">
+              <bpsim:Availability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_E2835CDD-D1AC-464A-9C5E-3E8C6178632B" id="_C7U8YoUvEfG0C_hBZia8og">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters xsi:type="bpsim:ResourceParameters">
+              <bpsim:Availability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_B2118DFE-2B0A-47F3-A25A-B17BF0B092C1" id="_C7U8Y4UvEfG0C_hBZia8og">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_A2F516AE-6D7D-43C9-A7F4-83AF57AFC28A" id="_C7U8ZIUvEfG0C_hBZia8og">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters xsi:type="bpsim:ResourceParameters">
+              <bpsim:Availability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_4C8CAF21-C5E8-44B0-AD80-7A35ED8AFC00" id="_C7U8ZYUvEfG0C_hBZia8og">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters xsi:type="bpsim:ResourceParameters">
+              <bpsim:Availability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_09F185C1-A7F5-450B-BDC1-FDEC68A28BC1" id="_C7U8ZoUvEfG0C_hBZia8og">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters xsi:type="bpsim:ResourceParameters">
+              <bpsim:Availability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_54FA5C33-F6B2-4868-A255-C6EB73DA12AB" id="_C7U8Z4UvEfG0C_hBZia8og">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters xsi:type="bpsim:ResourceParameters">
+              <bpsim:Availability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_929B368D-049E-4E43-ADD1-D3DDEBE8A57F" id="_C7U8aIUvEfG0C_hBZia8og">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters xsi:type="bpsim:ResourceParameters">
+              <bpsim:Availability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+        </bpsim:Scenario>
+      </bpsim:BPSimData>
+    </bpmn2:extensionElements>
+    <bpmn2:source>_C7THMIUvEfG0C_hBZia8og</bpmn2:source>
+    <bpmn2:target>_C7THMIUvEfG0C_hBZia8og</bpmn2:target>
+  </bpmn2:relationship>
+</bpmn2:definitions>

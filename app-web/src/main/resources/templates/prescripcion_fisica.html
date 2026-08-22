@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prescripción física</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="page">
+    <div class="container">
+
+    <div class="header">
+        <h1>Prescripción física</h1>
+        <p>Definición de objetivos, restricciones y tipo de trabajo por el fisioterapeuta 1</p>
+    </div>
+
+    <div class="card">
+        <h2>Evaluación médica</h2>
+
+        <div class="info-block">
+            <p class="info-row">
+                <strong>Nombre:</strong>
+                <span th:text="${evaluacionMedica.nombre ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Apellidos:</strong>
+                <span th:text="${evaluacionMedica.apellidos ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Edad:</strong>
+                <span th:text="${evaluacionMedica.edad ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Patologías:</strong>
+                <span th:text="${evaluacionMedica.patologias ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Objetivo principal:</strong>
+                <span th:text="${evaluacionMedica.objetivoPrincipal ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Dolor actual:</strong>
+                <span th:text="${evaluacionMedica.dolorActual ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Zona de dolor:</strong>
+                <span th:text="${evaluacionMedica.zonaDolor ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Contraindicaciones:</strong>
+                <span th:text="${evaluacionMedica.contraindicaciones ?: '-'}">-</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Evaluación física</h2>
+
+        <div class="info-block">
+            <p class="info-row">
+                <strong>Dolor escala:</strong>
+                <span th:text="${evaluacionFisica.dolorEscala ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Limitación funcional:</strong>
+                <span th:text="${evaluacionFisica.limitacionFuncional ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Rango de movimiento:</strong>
+                <span th:text="${evaluacionFisica.rangoMovimiento ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Observaciones postura:</strong>
+                <span th:text="${evaluacionFisica.observacionesPostura ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Nivel movilidad:</strong>
+                <span th:text="${evaluacionFisica.nivelMovilidad ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Equilibrio:</strong>
+                <span th:text="${evaluacionFisica.equilibrio ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Fuerza general:</strong>
+                <span th:text="${evaluacionFisica.fuerzaGeneral ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Recomendaciones fisio:</strong>
+                <span th:text="${evaluacionFisica.recomendacionesFisio ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Comentario fisioterapeuta:</strong>
+                <span th:text="${evaluacionFisica.comentarioFisioterapeuta ?: '-'}">-</span>
+            </p>
+        </div>
+    </div>
+
+    <form th:action="@{/tasks/{id}/prescripcion(id=${id})}"
+          method="post"
+          th:object="${prescripcionFisica}">
+
+        <div class="card">
+            <h2>Datos de prueba</h2>
+
+            <div class="actions">
+                <button type="button" class="btn btn-secondary" onclick="rellenarPrescripcionFisicaDemo()">
+                    Rellenar datos de prueba
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Formulario de prescripción física</h2>
+
+            <div class="form-group">
+                <label>Duración en semanas</label>
+                <input type="number"
+                       th:field="*{duracionSemanas}"
+                       min="1"
+                       placeholder="Ej: 8"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Frecuencia semanal</label>
+                <input type="number"
+                       th:field="*{frecuenciaSemanal}"
+                       min="1"
+                       placeholder="Ej: 3"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Objetivo principal</label>
+                <input type="text"
+                       th:field="*{objetivoPrincipal}"
+                       placeholder="Ej: mejora de movilidad y reducción de dolor"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Tipo de trabajo</label>
+                <input type="text"
+                       th:field="*{tipoTrabajo}"
+                       placeholder="Fuerza, movilidad, equilibrio..."
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Restricciones</label>
+                <textarea th:field="*{restricciones}"
+                          rows="3"
+                          placeholder="Ej: evitar impacto, evitar ejercicios con dolor intenso..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Observaciones</label>
+                <textarea th:field="*{observaciones}"
+                          rows="3"
+                          placeholder="Añade aquí observaciones adicionales para el diseño del entrenamiento..."></textarea>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Finalizar prescripción</h2>
+
+            <div class="actions">
+                <button type="submit" class="btn btn-primary">
+                    Guardar prescripción física
+                </button>
+
+                <a th:href="@{/tasks}" class="btn btn-secondary">
+                    Volver a tareas
+                </a>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+<script>
+    function setCampo(nombre, valor) {
+        const campo = document.querySelector('[name="' + nombre + '"]');
+
+        if (!campo) {
+            return;
+        }
+
+        campo.value = valor;
+    }
+
+    function rellenarPrescripcionFisicaDemo() {
+        setCampo('duracionSemanas', '8');
+        setCampo('frecuenciaSemanal', '3');
+
+        setCampo('objetivoPrincipal', 'Reducir dolor lumbar, mejorar movilidad de cadera y aumentar fuerza general de forma progresiva.');
+        setCampo('tipoTrabajo', 'Movilidad, fuerza progresiva, estabilidad lumbopélvica y equilibrio.');
+
+        setCampo('restricciones', 'Evitar impacto alto, cargas máximas, movimientos bruscos de flexión lumbar y ejercicios que aumenten el dolor por encima de 5/10.');
+        setCampo('observaciones', 'Comenzar con ejercicios básicos y controlar la respuesta al dolor. Progresar la intensidad según tolerancia y mantener trabajo técnico supervisado.');
+    }
+</script>
+
+</body>
+</html>

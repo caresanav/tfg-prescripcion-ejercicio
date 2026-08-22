@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluación física</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="page">
+    <div class="container">
+
+        <div class="header">
+            <h1>Evaluación física</h1>
+            <p>Revisión funcional del paciente realizada por el fisioterapeuta 1</p>
+        </div>
+
+        <div class="card">
+            <h2>Datos del paciente</h2>
+
+            <div class="info-block">
+                <p class="info-row">
+                    <strong>Nombre:</strong>
+                    <span th:text="${evaluacionMedica.nombre}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Apellidos:</strong>
+                    <span th:text="${evaluacionMedica.apellidos}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Edad:</strong>
+                    <span th:text="${evaluacionMedica.edad}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Patologías:</strong>
+                    <span th:text="${evaluacionMedica.patologias}">-</span>
+                </p>
+
+                <p class="info-row" th:if="${evaluacionMedica.email != null and !#strings.isEmpty(evaluacionMedica.email)}">
+                    <strong>Email:</strong>
+                    <span th:text="${evaluacionMedica.email}">-</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Datos clínicos básicos</h2>
+
+            <div class="info-block">
+                <p class="info-row">
+                    <strong>Peso:</strong>
+                    <span th:text="${evaluacionMedica.pesoKg ?: '-'}">-</span> kg
+                </p>
+
+                <p class="info-row">
+                    <strong>Altura:</strong>
+                    <span th:text="${evaluacionMedica.alturaCm ?: '-'}">-</span> cm
+                </p>
+
+                <p class="info-row">
+                    <strong>Tensión arterial:</strong>
+                    <span th:text="${evaluacionMedica.tensionArterial ?: '-'}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Frecuencia cardiaca en reposo:</strong>
+                    <span th:text="${evaluacionMedica.frecuenciaCardiacaReposo ?: '-'}">-</span> bpm
+                </p>
+
+                <p class="info-row">
+                    <strong>Medicación actual:</strong>
+                    <span th:text="${evaluacionMedica.medicacionActual ?: '-'}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Nivel de actividad:</strong>
+                    <span th:text="${evaluacionMedica.nivelActividad != null ? evaluacionMedica.nivelActividad : '-'}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Riesgo cardiovascular:</strong>
+                    <span th:text="${evaluacionMedica.riesgoCardiovascular != null ? evaluacionMedica.riesgoCardiovascular : '-'}">-</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Riesgo y restricciones</h2>
+
+            <div class="info-block">
+                <p class="info-row">
+                    <strong>Dolor actual:</strong>
+                    <span th:text="${evaluacionMedica.dolorActual ?: '-'}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Zona de dolor:</strong>
+                    <span th:text="${evaluacionMedica.zonaDolor ?: '-'}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Contraindicaciones:</strong>
+                    <span th:text="${evaluacionMedica.contraindicaciones ?: '-'}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Objetivo principal:</strong>
+                    <span th:text="${evaluacionMedica.objetivoPrincipal != null ? evaluacionMedica.objetivoPrincipal : '-'}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Necesita revisión fisioterapeuta:</strong>
+                    <span th:text="${evaluacionMedica.necesitaRevisionFisioterapeuta}">-</span>
+                </p>
+            </div>
+        </div>
+
+        <form th:action="@{|/tasks/${id}/fisica|}"
+              th:object="${evaluacionFisica}"
+              method="post">
+
+            <div class="card">
+                <h2>Datos de prueba</h2>
+
+                <div class="actions">
+                    <button type="button" class="btn btn-secondary" onclick="rellenarEvaluacionFisicaDemo()">
+                        Rellenar datos de prueba
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Evaluación funcional</h2>
+
+                <div class="form-group">
+                    <label>Dolor 0-10</label>
+                    <input type="number" min="0" max="10" th:field="*{dolorEscala}" placeholder="Ej: 5">
+                </div>
+
+                <div class="form-group">
+                    <label>Limitación funcional</label>
+                    <input type="text" th:field="*{limitacionFuncional}" placeholder="Ej: dificultad al subir escaleras">
+                </div>
+
+                <div class="form-group">
+                    <label>Rango de movimiento</label>
+                    <input type="text" th:field="*{rangoMovimiento}" placeholder="Ej: movilidad reducida en hombro derecho">
+                </div>
+
+                <div class="form-group">
+                    <label>Observaciones de postura</label>
+                    <textarea th:field="*{observacionesPostura}" rows="3" placeholder="Ej: ligera anteversión pélvica, hombros adelantados..."></textarea>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Capacidad y niveles físicos</h2>
+
+                <div class="form-group">
+                    <label>Nivel de movilidad</label>
+                    <select th:field="*{nivelMovilidad}">
+                        <option value="">-- Selecciona --</option>
+                        <option value="BAJO">Bajo</option>
+                        <option value="MEDIO">Medio</option>
+                        <option value="ALTO">Alto</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Equilibrio</label>
+                    <select th:field="*{equilibrio}">
+                        <option value="">-- Selecciona --</option>
+                        <option value="MALO">Malo</option>
+                        <option value="MEDIO">Medio</option>
+                        <option value="BUENO">Bueno</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Fuerza general</label>
+                    <select th:field="*{fuerzaGeneral}">
+                        <option value="">-- Selecciona --</option>
+                        <option value="BAJO">Bajo</option>
+                        <option value="MEDIO">Medio</option>
+                        <option value="ALTO">Alto</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Recomendaciones del fisioterapeuta</h2>
+
+                <div class="form-group">
+                    <label>Recomendaciones del fisio</label>
+                    <input type="text" th:field="*{recomendacionesFisio}" placeholder="Ej: priorizar movilidad y trabajo de fuerza progresivo">
+                </div>
+
+                <div class="form-group">
+                    <label>Comentario del fisioterapeuta</label>
+                    <textarea th:field="*{comentarioFisioterapeuta}" rows="4" placeholder="Añade aquí observaciones adicionales para la prescripción física..."></textarea>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Finalizar evaluación física</h2>
+
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">
+                        Completar evaluación física
+                    </button>
+
+                    <a th:href="@{/tasks}" class="btn btn-secondary">
+                        Volver a tareas
+                    </a>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<script>
+    function setCampo(nombre, valor) {
+        const campo = document.querySelector('[name="' + nombre + '"]');
+
+        if (!campo) {
+            return;
+        }
+
+        campo.value = valor;
+    }
+
+    function rellenarEvaluacionFisicaDemo() {
+        setCampo('dolorEscala', '4');
+        setCampo('limitacionFuncional', 'Dificultad leve al subir escaleras y al mantener sedestación prolongada.');
+        setCampo('rangoMovimiento', 'Ligera limitación en flexión lumbar y movilidad de cadera.');
+        setCampo('observacionesPostura', 'Ligera anteversión pélvica, hombros adelantados y compensaciones en la marcha.');
+
+        setCampo('nivelMovilidad', 'MEDIO');
+        setCampo('equilibrio', 'MEDIO');
+        setCampo('fuerzaGeneral', 'BAJO');
+
+        setCampo('recomendacionesFisio', 'Priorizar movilidad, control postural y fuerza progresiva sin impacto.');
+        setCampo('comentarioFisioterapeuta', 'Paciente apta para iniciar programa progresivo supervisado. Evitar ejercicios de impacto y cargas altas durante las primeras semanas.');
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumen del entrenamiento</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="page">
+    <div class="container">
+
+        <div class="header">
+            <h1>Resumen del entrenamiento</h1>
+            <p>Plan final generado para el paciente</p>
+        </div>
+
+        <div class="card">
+            <h2>Paciente</h2>
+
+            <div class="info-block">
+                <p class="info-row">
+                    <strong>Nombre:</strong>
+                    <span th:text="${resumen.nombrePaciente ?: '-'}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Apellidos:</strong>
+                    <span th:text="${resumen.apellidosPaciente ?: '-'}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Email:</strong>
+                    <span th:text="${resumen.emailPaciente ?: '-'}">-</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Entrenamiento asignado</h2>
+
+            <div class="info-block">
+                <p class="info-row">
+                    <strong>Nombre del plan:</strong>
+                    <span th:text="${resumen.nombrePlan ?: '-'}">-</span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Duración:</strong>
+                    <span th:text="${resumen.duracionSemanas ?: '-'}">-</span> semanas
+                </p>
+
+                <p class="info-row">
+                    <strong>Frecuencia semanal:</strong>
+                    <span th:text="${resumen.frecuenciaSemanal ?: '-'}">-</span> días por semana
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Indicaciones generales</h2>
+
+            <div class="info-block">
+                <p class="info-row" th:text="${resumen.indicacionesGenerales ?: '-'}">
+                    -
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Ejercicios seleccionados</h2>
+
+            <div class="info-block">
+                <p class="info-row"
+                   style="white-space: pre-line;"
+                   th:text="${resumen.ejerciciosSeleccionados ?: '-'}">
+                    -
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Observaciones del entrenador</h2>
+
+            <div class="info-block">
+                <p class="info-row" th:text="${resumen.observacionesEntrenador ?: '-'}">
+                    -
+                </p>
+            </div>
+        </div>
+
+        <button type="button"
+                class="btn btn-primary no-print"
+                onclick="window.print()">
+            Imprimir o guardar como PDF
+        </button>
+
+        <div class="card">
+            <h2>Acceso del paciente</h2>
+
+            <div class="info-block">
+                <p>
+                    Este es el resumen final que podrá consultar el paciente mediante un enlace único.
+                </p>
+
+                <p class="info-row">
+                    <strong>Token de acceso:</strong>
+                    <span th:text="${resumen.tokenAcceso}">token</span>
+                </p>
+            </div>
+
+            <div class="actions">
+                <a th:href="@{/tasks}" class="btn btn-secondary">
+                    Volver a tareas
+                </a>
+
+                <a href="/" class="btn btn-outline">
+                    Volver al inicio
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

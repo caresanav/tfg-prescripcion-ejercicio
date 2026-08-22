@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Diseño de entrenamiento</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="page">
+    <div class="container">
+
+    <div class="header">
+        <h1>Diseño de entrenamiento</h1>
+        <p>Plan final diseñado por el fisioterapeuta 2 a partir de la evaluación física y la prescripción</p>
+    </div>
+
+    <div class="card">
+        <h2>Evaluación física</h2>
+
+        <div class="info-block">
+            <p class="info-row">
+                <strong>Dolor escala:</strong>
+                <span th:text="${evaluacionFisica.dolorEscala ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Limitación funcional:</strong>
+                <span th:text="${evaluacionFisica.limitacionFuncional ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Rango de movimiento:</strong>
+                <span th:text="${evaluacionFisica.rangoMovimiento ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Observaciones postura:</strong>
+                <span th:text="${evaluacionFisica.observacionesPostura ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Nivel movilidad:</strong>
+                <span th:text="${evaluacionFisica.nivelMovilidad ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Equilibrio:</strong>
+                <span th:text="${evaluacionFisica.equilibrio ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Fuerza general:</strong>
+                <span th:text="${evaluacionFisica.fuerzaGeneral ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Recomendaciones fisio:</strong>
+                <span th:text="${evaluacionFisica.recomendacionesFisio ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Comentario fisioterapeuta:</strong>
+                <span th:text="${evaluacionFisica.comentarioFisioterapeuta ?: '-'}">-</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Prescripción física</h2>
+
+        <div class="info-block">
+            <p class="info-row">
+                <strong>Duración:</strong>
+                <span th:text="${prescripcionFisica.duracionSemanas ?: '-'}">-</span> semanas
+            </p>
+
+            <p class="info-row">
+                <strong>Frecuencia semanal:</strong>
+                <span th:text="${prescripcionFisica.frecuenciaSemanal ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Objetivo principal:</strong>
+                <span th:text="${prescripcionFisica.objetivoPrincipal ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Tipo de trabajo:</strong>
+                <span th:text="${prescripcionFisica.tipoTrabajo ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Restricciones:</strong>
+                <span th:text="${prescripcionFisica.restricciones ?: '-'}">-</span>
+            </p>
+
+            <p class="info-row">
+                <strong>Observaciones:</strong>
+                <span th:text="${prescripcionFisica.observaciones ?: '-'}">-</span>
+            </p>
+        </div>
+    </div>
+
+    <form th:action="@{/tasks/{id}/entrenamiento(id=${id})}"
+          method="post"
+          th:object="${entrenamiento}">
+
+        <div class="card">
+            <h2>Datos de prueba</h2>
+
+            <div class="actions">
+                <button type="button" class="btn btn-secondary" onclick="rellenarEntrenamientoDemo()">
+                    Rellenar datos de prueba
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Formulario de entrenamiento</h2>
+
+            <div class="form-group">
+                <label>Nombre del plan</label>
+                <input type="text"
+                       th:field="*{nombrePlan}"
+                       placeholder="Ej: Plan de fuerza y movilidad inicial"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Duración en semanas</label>
+                <input type="number"
+                       th:field="*{duracionSemanas}"
+                       min="1"
+                       placeholder="Ej: 8"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Frecuencia semanal</label>
+                <input type="number"
+                       th:field="*{frecuenciaSemanal}"
+                       min="1"
+                       placeholder="Ej: 3"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Indicaciones generales</label>
+                <textarea th:field="*{indicacionesGenerales}"
+                          rows="4"
+                          placeholder="Ej: realizar calentamiento previo, evitar dolor superior a 5/10..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Observaciones del entrenador</label>
+                <textarea th:field="*{observacionesEntrenador}"
+                          rows="4"
+                          placeholder="Observaciones internas para el seguimiento del paciente"></textarea>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Selección de ejercicios</h2>
+            <p>Selecciona los ejercicios que formarán parte del entrenamiento.</p>
+
+            <div th:if="${#lists.isEmpty(ejercicios)}" class="info-block">
+                <p class="info-row">
+                    No hay ejercicios disponibles en la base de datos.
+                </p>
+            </div>
+
+            <div th:if="${!#lists.isEmpty(ejercicios)}" class="task-list">
+
+                <div th:each="e : ${ejercicios}" class="task-item">
+                    <div>
+                        <h3 th:text="${e.nombre}">Nombre del ejercicio</h3>
+
+                        <p>
+                            <strong>Tipo:</strong>
+                            <span th:text="${e.tipoEjercicio.nombre}">Tipo</span>
+                        </p>
+
+                        <p>
+                            <strong>Nivel:</strong>
+                            <span th:text="${e.nivel}">Nivel</span>
+                        </p>
+
+                        <p>
+                            <strong>Material:</strong>
+                            <span th:text="${e.material}">Material</span>
+                        </p>
+
+                        <p th:text="${e.descripcion}">
+                            Descripción del ejercicio
+                        </p>
+                    </div>
+
+                    <label>
+                        <input type="checkbox"
+                               name="ejercicioIds"
+                               th:value="${e.id}">
+                        Seleccionar
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Finalizar diseño de entrenamiento</h2>
+
+            <div class="actions">
+                <button type="submit" class="btn btn-primary">
+                    Guardar entrenamiento
+                </button>
+
+                <a th:href="@{/tasks}" class="btn btn-secondary">
+                    Volver a tareas
+                </a>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+</div>
+
+<script>
+    function setCampo(nombre, valor) {
+        const campo = document.querySelector('[name="' + nombre + '"]');
+
+        if (!campo) {
+            return;
+        }
+
+        campo.value = valor;
+    }
+
+    function seleccionarEjerciciosDemo() {
+        const ejerciciosDeseados = [
+            'Movilidad de cadera',
+            'Rotaciones torácicas',
+            'Sentadilla asistida',
+            'Puente de glúteo',
+            'Apoyo monopodal asistido',
+            'Caminata suave'
+        ];
+
+        const checkboxes = document.querySelectorAll('input[name="ejercicioIds"]');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+
+        let seleccionados = 0;
+
+        checkboxes.forEach(checkbox => {
+            const tarjeta = checkbox.closest('.task-item');
+
+            if (!tarjeta) {
+                return;
+            }
+
+            const textoTarjeta = tarjeta.textContent.toLowerCase();
+
+            const coincide = ejerciciosDeseados.some(nombreEjercicio =>
+                textoTarjeta.includes(nombreEjercicio.toLowerCase())
+            );
+
+            if (coincide) {
+                checkbox.checked = true;
+                seleccionados++;
+            }
+        });
+
+        if (seleccionados === 0) {
+            checkboxes.forEach((checkbox, index) => {
+                if (index < 4) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+    }
+
+    function rellenarEntrenamientoDemo() {
+        setCampo('nombrePlan', 'Plan inicial de movilidad y fuerza lumbar');
+        setCampo('duracionSemanas', '8');
+        setCampo('frecuenciaSemanal', '3');
+
+        setCampo('indicacionesGenerales', 'Realizar calentamiento previo de 8-10 minutos. Mantener intensidad moderada, controlar la técnica y evitar dolor superior a 5/10. Priorizar movimientos lentos y controlados.');
+        setCampo('observacionesEntrenador', 'Paciente con dolor lumbar recurrente y fuerza general baja. Se recomienda iniciar con ejercicios básicos, controlar evolución semanal y progresar carga solo si no aumenta el dolor.');
+
+        seleccionarEjerciciosDemo();
+    }
+</script>
+
+</body>
+</html>

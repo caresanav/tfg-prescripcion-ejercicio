@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Publicar entrenamiento</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="page">
+    <div class="container">
+
+        <div class="header">
+            <h1>Publicar entrenamiento</h1>
+            <p>Revisa el entrenamiento antes de publicarlo para el paciente.</p>
+        </div>
+
+        <div class="card">
+            <h2 th:text="${entrenamiento.nombrePlan}">
+                Nombre del plan
+            </h2>
+
+            <div class="info-block">
+                <p class="info-row">
+                    <strong>Duración:</strong>
+                    <span th:text="${entrenamiento.duracionSemanas}">-</span>
+                    semanas
+                </p>
+
+                <p class="info-row">
+                    <strong>Frecuencia:</strong>
+                    <span th:text="${entrenamiento.frecuenciaSemanal}">-</span>
+                    días por semana
+                </p>
+
+                <p class="info-row">
+                    <strong>Indicaciones:</strong>
+                    <span th:text="${entrenamiento.indicacionesGenerales}">
+                        -
+                    </span>
+                </p>
+
+                <p class="info-row"
+                   style="white-space: pre-line;">
+                    <strong>Ejercicios:</strong><br>
+                    <span th:text="${entrenamiento.ejerciciosSeleccionados}">
+                        -
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <form th:action="@{/tasks/{id}/subir-entrenamiento(id=${id})}"
+                  method="post">
+
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">
+                        Publicar entrenamiento
+                    </button>
+
+                    <a th:href="@{/tasks}" class="btn btn-secondary">
+                        Volver sin publicar
+                    </a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Seguimiento médico</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="page">
+    <div class="container">
+
+        <div class="header">
+            <h1>Seguimiento médico</h1>
+            <p>Revisión clínica de la evolución del paciente.</p>
+        </div>
+
+        <div class="card">
+            <h2>Paciente</h2>
+
+            <div class="info-block">
+                <p class="info-row">
+                    <strong>Nombre:</strong>
+                    <span th:text="${evaluacionMedica.nombre ?: '-'}">
+                        -
+                    </span>
+                    <span th:text="${evaluacionMedica.apellidos ?: ''}">
+                    </span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Patologías:</strong>
+                    <span th:text="${evaluacionMedica.patologias ?: '-'}">
+                        -
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Seguimiento del fisioterapeuta</h2>
+
+            <div class="info-block">
+                <p class="info-row">
+                    <strong>Dolor:</strong>
+                    <span th:text="${seguimientoFisio.dolorActual ?: '-'}">
+                        -
+                    </span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Adherencia:</strong>
+                    <span th:text="${seguimientoFisio.adherenciaPorcentaje ?: '-'}">
+                        -
+                    </span> %
+                </p>
+
+                <p class="info-row">
+                    <strong>Evolución:</strong>
+                    <span th:text="${seguimientoFisio.evolucion ?: '-'}">
+                        -
+                    </span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Incidencias:</strong>
+                    <span th:text="${seguimientoFisio.incidencias ?: '-'}">
+                        -
+                    </span>
+                </p>
+
+                <p class="info-row">
+                    <strong>Observaciones:</strong>
+                    <span th:text="${seguimientoFisio.observaciones ?: '-'}">
+                        -
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <form th:action="@{/tasks/{id}/seguimiento-medico(id=${id})}"
+              th:object="${seguimientoMedico}"
+              method="post">
+
+            <div class="card">
+                <h2>Valoración médica</h2>
+
+                <div class="form-group">
+                    <label>Evolución clínica</label>
+                    <textarea th:field="*{evolucionClinica}"
+                              rows="4"
+                              required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Nuevas contraindicaciones</label>
+                    <textarea th:field="*{nuevasContraindicaciones}"
+                              rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Observaciones</label>
+                    <textarea th:field="*{observaciones}"
+                              rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Decisión médica</h2>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox"
+                               th:field="*{necesitaContinuar}">
+                        El paciente necesita continuar en seguimiento
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox"
+                               th:field="*{cambiaPrescripcion}">
+                        Es necesario cambiar la prescripción
+                    </label>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">
+                        Completar seguimiento médico
+                    </button>
+
+                    <a th:href="@{/tasks}" class="btn btn-secondary">
+                        Volver a tareas
+                    </a>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+# Credenciales
+.env
+.env.*
+!.env.example
+
+# Compilación
+**/target/
+
+# Configuración local
+**/application-local.properties
+
+# IntelliJ y VS Code
+.idea/
+**/.idea/
+.vscode/
+**/.vscode/
+*.iml
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Registros
+*.log
+logs/
+
+# Datos locales
+data/
+postgres-data/

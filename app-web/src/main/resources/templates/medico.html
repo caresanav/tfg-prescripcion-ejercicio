@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Médico</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="page">
+    <div class="container">
+
+        <div class="header">
+            <h1>Área del Médico</h1>
+            <p>Inicio y realización de la evaluación médica inicial del paciente</p>
+        </div>
+
+        <div class="card">
+            <h2>Acciones disponibles</h2>
+
+            <div class="actions">
+                <form th:action="@{/start}" method="post">
+                    <button type="submit" class="btn btn-primary">
+                        Iniciar nueva evaluación médica
+                    </button>
+                </form>
+
+                <a th:href="@{/tasks}" class="btn btn-secondary">
+                    Ver mis tareas de evaluación médica
+                </a>
+
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-outline">
+                        Cerrar sesión
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Responsabilidades de este rol</h2>
+
+            <div class="info-block">
+                <p class="info-row">
+                    <strong>Evaluación médica:</strong>
+                    registrar los datos del paciente, datos clínicos, restricciones, objetivo principal y necesidad de revisión por fisioterapeuta.
+                </p>
+
+                <p class="info-row">
+                    <strong>Continuación del proceso:</strong>
+                    si se marca que necesita revisión por fisioterapeuta, el flujo continuará hacia la evaluación física.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

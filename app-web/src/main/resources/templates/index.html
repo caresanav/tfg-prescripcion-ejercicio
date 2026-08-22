@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TFG - Demo</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="page">
+    <div class="container">
+
+        <div class="header">
+            <h1>TFG - Demo</h1>
+            <p>Panel de administración del sistema de prescripción de ejercicio físico</p>
+        </div>
+
+        <div class="card">
+            <h2>Acciones del administrador</h2>
+
+            <div class="actions">
+                <form th:action="@{/start}" method="post">
+                    <button type="submit" class="btn btn-primary">
+                        Iniciar proceso
+                    </button>
+                </form>
+                
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-outline">
+                        Cerrar sesión
+                    </button>
+                </form>
+
+                <a th:href="@{/tasks}" class="btn btn-secondary">
+                    Ver mis tareas
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
