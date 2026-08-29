@@ -6,7 +6,6 @@ public class EventoEmail {
     private String nombre;
     private String apellidos;
     private String email;
-    private String mensaje;
     private Long emailEnvioId;
     private String tokenRespuesta;
 
@@ -36,14 +35,6 @@ public class EventoEmail {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
     }
 
     public Long getEmailEnvioId() {

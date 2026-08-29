@@ -129,24 +129,6 @@
             </div>
 
             <div class="form-group">
-                <label>Duración en semanas</label>
-                <input type="number"
-                       th:field="*{duracionSemanas}"
-                       min="1"
-                       placeholder="Ej: 8"
-                       required>
-            </div>
-
-            <div class="form-group">
-                <label>Frecuencia semanal</label>
-                <input type="number"
-                       th:field="*{frecuenciaSemanal}"
-                       min="1"
-                       placeholder="Ej: 3"
-                       required>
-            </div>
-
-            <div class="form-group">
                 <label>Indicaciones generales</label>
                 <textarea th:field="*{indicacionesGenerales}"
                           rows="4"
@@ -287,8 +269,6 @@
 
     function rellenarEntrenamientoDemo() {
         setCampo('nombrePlan', 'Plan inicial de movilidad y fuerza lumbar');
-        setCampo('duracionSemanas', '8');
-        setCampo('frecuenciaSemanal', '3');
 
         setCampo('indicacionesGenerales', 'Realizar calentamiento previo de 8-10 minutos. Mantener intensidad moderada, controlar la técnica y evitar dolor superior a 5/10. Priorizar movimientos lentos y controlados.');
         setCampo('observacionesEntrenador', 'Paciente con dolor lumbar recurrente y fuerza general baja. Se recomienda iniciar con ejercicios básicos, controlar evolución semanal y progresar carga solo si no aumenta el dolor.');

@@ -35,7 +35,7 @@ public class EmailService {
 
         // Cuerpo del mensaje (texto plano)
         String texto = "Hola " + request.getNombre() + " " + request.getApellidos() + ",\n\n"
-                + request.getMensaje() + "\n\n"
+                //+ /*request.getMensaje() +*/ "\n\n"
                 + "Has sido asignado una cita para revisión con fisioterapia. Puedes responder usando uno de estos enlaces:\n\n"
                 + "Confirmar cita:\n"
                 + enlaceConfirmar + "\n\n"

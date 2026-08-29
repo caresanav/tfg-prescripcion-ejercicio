@@ -23,15 +23,13 @@ public class EmailEnvioService {
     public EmailEnvio guardarPendiente(Long processInstanceId,
             String nombrePaciente,
             String apellidosPaciente,
-            String emailDestino,
-            String mensaje) {
+            String emailDestino) {
 
         EmailEnvio emailEnvio = new EmailEnvio();
         emailEnvio.setProcessInstanceId(processInstanceId);
         emailEnvio.setNombrePaciente(nombrePaciente);
         emailEnvio.setApellidosPaciente(apellidosPaciente);
         emailEnvio.setEmailDestino(emailDestino);
-        emailEnvio.setMensaje(mensaje);
         emailEnvio.setEstadoEnvio("PENDIENTE");
         emailEnvio.setEstadoRespuesta(null);
         emailEnvio.setTokenRespuesta(UUID.randomUUID().toString());

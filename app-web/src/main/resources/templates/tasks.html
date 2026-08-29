@@ -21,32 +21,46 @@
             <div class="card">
                 <h2>Evaluaciones físicas pendientes</h2>
 
-                <div th:if="${#lists.isEmpty(evaluacionesFisicas)}" class="info-block">
+                <div th:if="${#lists.isEmpty(evaluacionesFisicas)}"
+                     class="info-block">
                     <p class="info-row">
                         No hay evaluaciones físicas pendientes.
                     </p>
                 </div>
 
-                <div th:if="${!#lists.isEmpty(evaluacionesFisicas)}" class="task-list">
-                    <div th:each="t : ${evaluacionesFisicas}" class="task-item">
+                <div th:if="${!#lists.isEmpty(evaluacionesFisicas)}"
+                     class="task-list">
+
+                    <div th:each="t : ${evaluacionesFisicas}"
+                         class="task-item">
+
                         <div>
                             <h3>
-                                <span th:text="${t.name}">Evaluación física</span>
+                                <span th:text="${t.name}">
+                                    Evaluación física
+                                </span>
                             </h3>
 
                             <p>
                                 <strong>Paciente:</strong>
-                                <span th:text="${t.nombrePaciente}">Nombre</span>
-                                <span th:text="${t.apellidosPaciente}">Apellidos</span>
+                                <span th:text="${t.nombrePaciente}">
+                                    Nombre
+                                </span>
+                                <span th:text="${t.apellidosPaciente}">
+                                    Apellidos
+                                </span>
                             </p>
 
                             <p>
                                 <strong>Estado:</strong>
-                                <span th:text="${t.status}">estado</span>
+                                <span th:text="${t.status}">
+                                    Estado
+                                </span>
                             </p>
                         </div>
 
-                        <a th:href="@{|/tasks/${t.id}|}" class="btn btn-primary">
+                        <a th:href="@{|/${actor}/tasks/${t.id}|}"
+                           class="btn btn-primary">
                             Abrir evaluación física
                         </a>
                     </div>
@@ -56,32 +70,46 @@
             <div class="card">
                 <h2>Prescripciones físicas pendientes</h2>
 
-                <div th:if="${#lists.isEmpty(prescripcionesFisicas)}" class="info-block">
+                <div th:if="${#lists.isEmpty(prescripcionesFisicas)}"
+                     class="info-block">
                     <p class="info-row">
                         No hay prescripciones físicas pendientes.
                     </p>
                 </div>
 
-                <div th:if="${!#lists.isEmpty(prescripcionesFisicas)}" class="task-list">
-                    <div th:each="t : ${prescripcionesFisicas}" class="task-item">
+                <div th:if="${!#lists.isEmpty(prescripcionesFisicas)}"
+                     class="task-list">
+
+                    <div th:each="t : ${prescripcionesFisicas}"
+                         class="task-item">
+
                         <div>
                             <h3>
-                                <span th:text="${t.name}">Prescripción física</span>
+                                <span th:text="${t.name}">
+                                    Prescripción física
+                                </span>
                             </h3>
 
                             <p>
                                 <strong>Paciente:</strong>
-                                <span th:text="${t.nombrePaciente}">Nombre</span>
-                                <span th:text="${t.apellidosPaciente}">Apellidos</span>
+                                <span th:text="${t.nombrePaciente}">
+                                    Nombre
+                                </span>
+                                <span th:text="${t.apellidosPaciente}">
+                                    Apellidos
+                                </span>
                             </p>
 
                             <p>
                                 <strong>Estado:</strong>
-                                <span th:text="${t.status}">estado</span>
+                                <span th:text="${t.status}">
+                                    Estado
+                                </span>
                             </p>
                         </div>
 
-                        <a th:href="@{|/tasks/${t.id}|}" class="btn btn-primary">
+                        <a th:href="@{|/${actor}/tasks/${t.id}|}"
+                           class="btn btn-primary">
                             Abrir prescripción física
                         </a>
                     </div>
@@ -92,17 +120,17 @@
                 <h2>Seguimientos pendientes</h2>
 
                 <div th:if="${#lists.isEmpty(seguimientosFisio)}"
-                    class="info-block">
+                     class="info-block">
                     <p class="info-row">
                         No hay seguimientos fisioterapéuticos pendientes.
                     </p>
                 </div>
 
                 <div th:if="${!#lists.isEmpty(seguimientosFisio)}"
-                    class="task-list">
+                     class="task-list">
 
                     <div th:each="t : ${seguimientosFisio}"
-                        class="task-item">
+                         class="task-item">
 
                         <div>
                             <h3 th:text="${t.name}">
@@ -111,7 +139,9 @@
 
                             <p>
                                 <strong>Paciente:</strong>
-                                <span th:text="${t.nombrePaciente}">Nombre</span>
+                                <span th:text="${t.nombrePaciente}">
+                                    Nombre
+                                </span>
                                 <span th:text="${t.apellidosPaciente}">
                                     Apellidos
                                 </span>
@@ -119,12 +149,14 @@
 
                             <p>
                                 <strong>Estado:</strong>
-                                <span th:text="${t.status}">Estado</span>
+                                <span th:text="${t.status}">
+                                    Estado
+                                </span>
                             </p>
                         </div>
 
-                        <a th:href="@{|/tasks/${t.id}|}"
-                        class="btn btn-primary">
+                        <a th:href="@{|/${actor}/tasks/${t.id}|}"
+                           class="btn btn-primary">
                             Abrir seguimiento fisioterapéutico
                         </a>
                     </div>
@@ -140,17 +172,17 @@
                 <h2>Evaluaciones médicas pendientes</h2>
 
                 <div th:if="${#lists.isEmpty(evaluacionesMedicas)}"
-                    class="info-block">
+                     class="info-block">
                     <p class="info-row">
                         No hay evaluaciones médicas pendientes.
                     </p>
                 </div>
 
                 <div th:if="${!#lists.isEmpty(evaluacionesMedicas)}"
-                    class="task-list">
+                     class="task-list">
 
                     <div th:each="t : ${evaluacionesMedicas}"
-                        class="task-item">
+                         class="task-item">
 
                         <div>
                             <h3 th:text="${t.name}">
@@ -175,8 +207,8 @@
                             </p>
                         </div>
 
-                        <a th:href="@{|/tasks/${t.id}|}"
-                        class="btn btn-primary">
+                        <a th:href="@{|/${actor}/tasks/${t.id}|}"
+                           class="btn btn-primary">
                             Abrir evaluación médica
                         </a>
                     </div>
@@ -187,17 +219,17 @@
                 <h2>Seguimientos médicos pendientes</h2>
 
                 <div th:if="${#lists.isEmpty(seguimientosMedicos)}"
-                    class="info-block">
+                     class="info-block">
                     <p class="info-row">
                         No hay seguimientos médicos pendientes.
                     </p>
                 </div>
 
                 <div th:if="${!#lists.isEmpty(seguimientosMedicos)}"
-                    class="task-list">
+                     class="task-list">
 
                     <div th:each="t : ${seguimientosMedicos}"
-                        class="task-item">
+                         class="task-item">
 
                         <div>
                             <h3 th:text="${t.name}">
@@ -222,8 +254,8 @@
                             </p>
                         </div>
 
-                        <a th:href="@{|/tasks/${t.id}|}"
-                        class="btn btn-primary">
+                        <a th:href="@{|/${actor}/tasks/${t.id}|}"
+                           class="btn btn-primary">
                             Abrir seguimiento médico
                         </a>
                     </div>
@@ -232,60 +264,168 @@
 
         </div>
 
+        <!-- Vista especial para fisio2 -->
+        <div th:if="${actor == 'fisio2'}">
 
-        <!-- Vista general para fisio2 y admin -->
-        <div th:if="${actor != 'fisio1' && actor != 'medico'}">
+            <div class="card">
+                <h2>Diseños de entrenamiento pendientes</h2>
+
+                <div th:if="${#lists.isEmpty(disenosEntrenamiento)}"
+                     class="info-block">
+                    <p class="info-row">
+                        No hay diseños de entrenamiento pendientes.
+                    </p>
+                </div>
+
+                <div th:if="${!#lists.isEmpty(disenosEntrenamiento)}"
+                     class="task-list">
+
+                    <div th:each="t : ${disenosEntrenamiento}"
+                         class="task-item">
+
+                        <div>
+                            <h3 th:text="${t.name}">
+                                Diseño de entrenamiento
+                            </h3>
+
+                            <p>
+                                <strong>Paciente:</strong>
+                                <span th:text="${t.nombrePaciente}">
+                                    Nombre
+                                </span>
+                                <span th:text="${t.apellidosPaciente}">
+                                    Apellidos
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Estado:</strong>
+                                <span th:text="${t.status}">
+                                    Estado
+                                </span>
+                            </p>
+                        </div>
+
+                        <a th:href="@{|/${actor}/tasks/${t.id}|}"
+                           class="btn btn-primary">
+                            Abrir diseño de entrenamiento
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Entrenamientos pendientes de publicación</h2>
+
+                <div th:if="${#lists.isEmpty(publicacionesEntrenamiento)}"
+                     class="info-block">
+                    <p class="info-row">
+                        No hay entrenamientos pendientes de publicación.
+                    </p>
+                </div>
+
+                <div th:if="${!#lists.isEmpty(publicacionesEntrenamiento)}"
+                     class="task-list">
+
+                    <div th:each="t : ${publicacionesEntrenamiento}"
+                         class="task-item">
+
+                        <div>
+                            <h3 th:text="${t.name}">
+                                Publicación del entrenamiento
+                            </h3>
+
+                            <p>
+                                <strong>Paciente:</strong>
+                                <span th:text="${t.nombrePaciente}">
+                                    Nombre
+                                </span>
+                                <span th:text="${t.apellidosPaciente}">
+                                    Apellidos
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Estado:</strong>
+                                <span th:text="${t.status}">
+                                    Estado
+                                </span>
+                            </p>
+                        </div>
+
+                        <a th:href="@{|/${actor}/tasks/${t.id}|}"
+                           class="btn btn-primary">
+                            Revisar y publicar entrenamiento
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Vista general para admin -->
+        <div th:if="${actor == 'admin'}">
 
             <div class="card">
                 <h2>Tareas disponibles</h2>
 
-                <div th:if="${#lists.isEmpty(tareas)}" class="info-block">
+                <div th:if="${#lists.isEmpty(tareas)}"
+                     class="info-block">
                     <p class="info-row">
                         No hay tareas pendientes para este actor.
                     </p>
                 </div>
 
-                <div th:if="${!#lists.isEmpty(tareas)}" class="task-list">
+                <div th:if="${!#lists.isEmpty(tareas)}"
+                     class="task-list">
 
-                    <div th:each="t : ${tareas}" class="task-item">
+                    <div th:each="t : ${tareas}"
+                         class="task-item">
+
                         <div>
-                            <h3 th:text="${t.name}">Nombre de la tarea</h3>
+                            <h3 th:text="${t.name}">
+                                Nombre de la tarea
+                            </h3>
 
-                            <p th:if="${actor == 'medico'
-                                        || actor == 'fisio2'
-                                        || actor == 'admin'}">
+                            <p>
                                 <strong>Paciente:</strong>
-                                <span th:text="${t.nombrePaciente}">Nombre</span>
-                                <span th:text="${t.apellidosPaciente}">Apellidos</span>
+                                <span th:text="${t.nombrePaciente}">
+                                    Nombre
+                                </span>
+                                <span th:text="${t.apellidosPaciente}">
+                                    Apellidos
+                                </span>
                             </p>
 
                             <p>
                                 <strong>Estado:</strong>
-                                <span th:text="${t.status}">estado</span>
+                                <span th:text="${t.status}">
+                                    Estado
+                                </span>
                             </p>
                         </div>
 
-                        <a th:href="@{|/tasks/${t.id}|}"
-                            class="btn btn-primary">
+                        <a th:href="@{|/${actor}/tasks/${t.id}|}"
+                           class="btn btn-primary">
 
-                                <span th:switch="${t.name}">
-                                    <span th:case="'Seguimiento médico'">
-                                        Abrir seguimiento médico
-                                    </span>
-
-                                    <span th:case="'Subir entrenamiento'">
-                                        Publicar entrenamiento
-                                    </span>
-
-                                    <span th:case="'Diseño de entrenamiento'">
-                                        Abrir diseño de entrenamiento
-                                    </span>
-
-                                    <span th:case="*">
-                                        Abrir tarea
-                                    </span>
+                            <span th:switch="${t.name}">
+                                <span th:case="'Seguimiento médico'">
+                                    Abrir seguimiento médico
                                 </span>
-                            </a>
+
+                                <span th:case="'Subir entrenamiento'">
+                                    Publicar entrenamiento
+                                </span>
+
+                                <span th:case="'Diseño de entrenamiento'">
+                                    Abrir diseño de entrenamiento
+                                </span>
+
+                                <span th:case="*">
+                                    Abrir tarea
+                                </span>
+                            </span>
+                        </a>
                     </div>
 
                 </div>
@@ -297,35 +437,38 @@
             <h2>Navegación</h2>
 
             <div class="actions">
+
                 <a th:if="${actor == 'medico'}"
-                th:href="@{/medico}"
-                class="btn btn-secondary">
+                   th:href="@{/medico}"
+                   class="btn btn-secondary">
                     Volver al área médica
                 </a>
 
                 <a th:if="${actor == 'fisio1'}"
-                th:href="@{/fisio1}"
-                class="btn btn-secondary">
-                    Volver al área de fisio1
+                   th:href="@{/fisio1}"
+                   class="btn btn-secondary">
+                    Volver al área de Fisio 1
                 </a>
 
                 <a th:if="${actor == 'fisio2'}"
-                th:href="@{/fisio2}"
-                class="btn btn-secondary">
-                    Volver al área de fisio2
+                   th:href="@{/fisio2}"
+                   class="btn btn-secondary">
+                    Volver al área de Fisio 2
                 </a>
 
                 <a th:if="${actor == 'admin'}"
-                th:href="@{/}"
-                class="btn btn-secondary">
+                   th:href="@{/}"
+                   class="btn btn-secondary">
                     Volver al panel de administración
                 </a>
 
                 <form th:action="@{/logout}" method="post">
-                    <button type="submit" class="btn btn-outline">
+                    <button type="submit"
+                            class="btn btn-outline">
                         Cerrar sesión
                     </button>
                 </form>
+
             </div>
         </div>
 

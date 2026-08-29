@@ -25,7 +25,6 @@ public class EmailKafkaConsumer {
         req.setNombre(event.getNombre());
         req.setApellidos(event.getApellidos());
         req.setEmail(event.getEmail());
-        req.setMensaje(event.getMensaje());
         req.setTokenRespuesta(event.getTokenRespuesta());
 
         try {

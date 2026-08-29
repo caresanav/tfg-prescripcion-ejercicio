@@ -1,34 +1,47 @@
 package com.tfg.web;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.kie.server.api.model.instance.TaskInstance;
+import org.kie.server.api.model.instance.TaskSummary;
+import org.kie.server.client.ProcessServicesClient;
+import org.kie.server.client.QueryServicesClient;
+import org.kie.server.client.UserTaskServicesClient;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tfg.client.ResumenApiClient;
+import com.tfg.client.dto.CrearResumenRequest;
+import com.tfg.client.dto.ResumenResponse;
+import com.tfg.entity.EmailEnvio;
+import com.tfg.model.Entrenamiento;
+import com.tfg.model.EvaluacionFisica;
+
 // Creada por Carmen Esau
 
 import com.tfg.model.EvaluacionMedica;
 import com.tfg.model.EventoEmail;
-import com.tfg.service.EmailKafkaProducer;
-import com.tfg.model.EvaluacionFisica;
-import com.tfg.service.EmailService;
-import com.tfg.entity.EmailEnvio;
-import com.tfg.service.EmailEnvioService;
 import com.tfg.model.PrescripcionFisica;
-import com.tfg.model.Entrenamiento;
-import com.tfg.model.TaskView;
 import com.tfg.model.SeguimientoFisio;
 import com.tfg.model.SeguimientoMedico;
+import com.tfg.model.TaskView;
 import com.tfg.repository.EjercicioRepository;
-import com.tfg.client.ResumenApiClient;
-import com.tfg.client.dto.CrearResumenRequest;
-import com.tfg.client.dto.ResumenResponse;
-
-import org.kie.server.client.*;
-import org.kie.server.api.model.instance.TaskSummary;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.Authentication;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.kie.server.api.model.instance.TaskInstance;
-import java.util.*;
+import com.tfg.service.EmailEnvioService;
+import com.tfg.service.EmailKafkaProducer;
+import com.tfg.service.EmailService;
 
 /**
  * CONTROLADOR WEB
@@ -93,9 +106,9 @@ public class UiController {
     public String home(Authentication authentication) {
         return switch (authentication.getName()) {
             case "admin" -> "index";
-            case "medico" -> "medico";
-            case "fisio1" -> "fisio";
-            case "fisio2" -> "fisio2";
+            case "medico" -> "redirect:/medico";
+            case "fisio1" -> "redirect:/fisio1";
+            case "fisio2" -> "redirect:/fisio2";
             default -> "redirect:/login";
         };
     }
@@ -199,9 +212,17 @@ public class UiController {
                 .toList();
 
         List<TaskView> seguimientosFisio = tareasView.stream()
-        .filter(t ->
-                "Seguimiento fisioterapéutico".equals(t.getName()))
+        .filter(t -> "Seguimiento fisioterapéutico".equals(t.getName()))
         .toList();
+
+        // Listas separadas para fisio2
+        List<TaskView> disenosEntrenamiento = tareasView.stream()
+                .filter(t -> "Diseño de entrenamiento".equals(t.getName()))
+                .toList();
+
+        List<TaskView> publicacionesEntrenamiento = tareasView.stream()
+                .filter(t -> "Subir entrenamiento".equals(t.getName()))
+                .toList();
 
         model.addAttribute("tareas", tareasView);
         model.addAttribute("evaluacionesMedicas", evaluacionesMedicas);
@@ -210,6 +231,8 @@ public class UiController {
         model.addAttribute("prescripcionesFisicas", prescripcionesFisicas);
         model.addAttribute("actor", actor);
         model.addAttribute("seguimientosFisio", seguimientosFisio);
+        model.addAttribute("disenosEntrenamiento", disenosEntrenamiento);
+        model.addAttribute("publicacionesEntrenamiento", publicacionesEntrenamiento);
 
         return "tasks";
     }
@@ -217,20 +240,18 @@ public class UiController {
     ////////////////////////////// RECLAMA E INICIA
     ////////////////////////////// TAREA///////////////////////////////////
     // Reclama + Inicia la tarea y muestra tu formulario
-    @GetMapping("/tasks/{id}")
+    @GetMapping({
+            "/medico/tasks/{id}",
+            "/fisio1/tasks/{id}",
+            "/fisio2/tasks/{id}",
+            "/admin/tasks/{id}"
+    })
     public String showTask(@PathVariable Long id, Authentication authentication, Model model) {
         // Actor real: usuario que ha iniciado sesión
         String actor = authentication.getName();
 
         // Primero averiguamos qué tarea es, antes de reclamarla o iniciarla
-        String taskName = tasks
-                .findTasksAssignedAsPotentialOwner(
-                        actor, 0, 200)
-                .stream()
-                .filter(t -> Objects.equals(t.getId(), id))
-                .map(TaskSummary::getName)
-                .findFirst()
-                .orElse("");
+        String taskName = tasks.findTaskById(id).getName();
 
         // Si es evaluación física, solo dejamos entrar si el paciente confirmó por email
         if ("Evaluación física".equals(taskName)
@@ -320,7 +341,8 @@ public class UiController {
 
             return "prescripcion_fisica";
         }
-
+        
+        // Tarea: Diseño de entrenamiento
         if ("Diseño de entrenamiento".equals(taskName)) {
             var taskInstance = tasks.getTaskInstance(containerId, id);
             Long processInstanceId = taskInstance.getProcessInstanceId();
@@ -362,6 +384,7 @@ public class UiController {
             return "entrenamiento";
         }
 
+        // Tarea: subir entrenamiento
         if ("Subir entrenamiento".equals(taskName)) {
             TaskInstance taskInstance =
                     tasks.getTaskInstance(containerId, id);
@@ -374,35 +397,7 @@ public class UiController {
                             containerId,
                             processInstanceId);
 
-            Object raw = vars.get("entrenamiento");
-            Entrenamiento entrenamiento;
-
-            if (raw == null) {
-                entrenamiento = new Entrenamiento();
-            } else if (raw instanceof Entrenamiento) {
-                entrenamiento = (Entrenamiento) raw;
-            } else {
-                entrenamiento =
-                        objectMapper.convertValue(raw, Entrenamiento.class);
-            }
-
-            model.addAttribute("entrenamiento", entrenamiento);
-
-            return "subir_entrenamiento";
-        }
-
-        if ("Seguimiento fisioterapéutico".equals(taskName)) {
-            TaskInstance taskInstance =
-                    tasks.getTaskInstance(containerId, id);
-
-            Long processInstanceId =
-                    taskInstance.getProcessInstanceId();
-
-            Map<String, Object> vars =
-                    processes.getProcessInstanceVariables(
-                            containerId,
-                            processInstanceId);
-
+            // Recuperar entrenamiento
             Object rawEntrenamiento = vars.get("entrenamiento");
             Entrenamiento entrenamiento;
 
@@ -416,7 +411,80 @@ public class UiController {
                         Entrenamiento.class);
             }
 
+            // Recuperar prescripción
+            Object rawPrescripcion = vars.get("prescripcionFisica");
+            PrescripcionFisica prescripcionFisica;
+
+            if (rawPrescripcion == null) {
+                throw new IllegalStateException(
+                        "No existe una prescripción para este proceso");
+            } else if (rawPrescripcion instanceof PrescripcionFisica) {
+                prescripcionFisica =
+                        (PrescripcionFisica) rawPrescripcion;
+            } else {
+                prescripcionFisica = objectMapper.convertValue(
+                        rawPrescripcion,
+                        PrescripcionFisica.class);
+            }
+
+            // Enviar ambos objetos a la pantalla
             model.addAttribute("entrenamiento", entrenamiento);
+            model.addAttribute(
+                    "prescripcionFisica",
+                    prescripcionFisica);
+
+            return "subir_entrenamiento";
+        }
+
+        // Tarea seguimiento fisio
+        if ("Seguimiento fisioterapéutico".equals(taskName)) {
+            TaskInstance taskInstance =
+                    tasks.getTaskInstance(containerId, id);
+
+            Long processInstanceId =
+                    taskInstance.getProcessInstanceId();
+
+            Map<String, Object> vars =
+                    processes.getProcessInstanceVariables(
+                            containerId,
+                            processInstanceId);
+
+            // Recuperar entrenamiento
+            Object rawEntrenamiento = vars.get("entrenamiento");
+            Entrenamiento entrenamiento;
+
+            if (rawEntrenamiento == null) {
+                entrenamiento = new Entrenamiento();
+            } else if (rawEntrenamiento instanceof Entrenamiento) {
+                entrenamiento =
+                        (Entrenamiento) rawEntrenamiento;
+            } else {
+                entrenamiento = objectMapper.convertValue(
+                        rawEntrenamiento,
+                        Entrenamiento.class);
+            }
+
+            // Recuperar prescripción
+            Object rawPrescripcion = vars.get("prescripcionFisica");
+            PrescripcionFisica prescripcionFisica;
+
+            if (rawPrescripcion == null) {
+                throw new IllegalStateException(
+                        "No existe una prescripción para este proceso");
+            } else if (rawPrescripcion instanceof PrescripcionFisica) {
+                prescripcionFisica =
+                        (PrescripcionFisica) rawPrescripcion;
+            } else {
+                prescripcionFisica = objectMapper.convertValue(
+                        rawPrescripcion,
+                        PrescripcionFisica.class);
+            }
+
+            // Enviar los objetos a la pantalla
+            model.addAttribute("entrenamiento", entrenamiento);
+            model.addAttribute(
+                    "prescripcionFisica",
+                    prescripcionFisica);
             model.addAttribute(
                     "seguimientoFisio",
                     new SeguimientoFisio());
@@ -509,15 +577,12 @@ public class UiController {
         // Si necesita enviar correo o no
         if (Boolean.TRUE.equals(evaluacion.getNecesitaRevisionFisioterapeuta())) {
 
-            String mensaje = "Se ha asignado una cita de revisión con fisioterapia.";
-
             // 1. Guardamos primero el registro en BD con estado PENDIENTE
             EmailEnvio emailGuardado = emailEnvioService.guardarPendiente(
                     processInstanceId,
                     evaluacion.getNombre(),
                     evaluacion.getApellidos(),
-                    evaluacion.getEmail(),
-                    mensaje);
+                    evaluacion.getEmail());
 
             // 2. Enviamos a Kafka el evento con el id de la fila guardada
             EventoEmail event = new EventoEmail();
@@ -525,7 +590,6 @@ public class UiController {
             event.setNombre(evaluacion.getNombre());
             event.setApellidos(evaluacion.getApellidos());
             event.setEmail(evaluacion.getEmail());
-            event.setMensaje(mensaje);
             event.setTokenRespuesta(emailGuardado.getTokenRespuesta());
 
             emailKafkaProducer.enviarEmail(event);
@@ -585,6 +649,9 @@ public class UiController {
                     String.join("\n", nombresEjercicios));
         }
 
+        //Coger duracion y frecuencia de prescripcion
+
+
         Map<String, Object> out = new HashMap<>();
         out.put("entrenamiento", entrenamiento);
 
@@ -598,12 +665,19 @@ public class UiController {
             @PathVariable String token,
             Model model) {
 
-        ResumenResponse resumen =
-                resumenApiClient.buscarPorToken(token);
+        try {
+            ResumenResponse resumen =
+                    resumenApiClient.buscarPorToken(token);
 
-        model.addAttribute("resumen", resumen);
+            model.addAttribute("resumen", resumen);
 
-        return "resumen_entrenamiento";
+            return "resumen_entrenamiento";
+
+        } catch (HttpClientErrorException.NotFound e) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    "No existe ningún entrenamiento asociado al token indicado");
+        }
     }
 
     @PostMapping("/tasks/{id}/subir-entrenamiento")
@@ -645,6 +719,24 @@ public class UiController {
                             Entrenamiento.class);
         }
 
+        Object rawPrescripcion =
+                vars.get("prescripcionFisica");
+
+        PrescripcionFisica prescripcionFisica;
+
+        if (rawPrescripcion == null) {
+            throw new IllegalStateException(
+                    "No existe una prescripción para este proceso");
+        } else if (rawPrescripcion instanceof PrescripcionFisica) {
+            prescripcionFisica =
+                    (PrescripcionFisica) rawPrescripcion;
+        } else {
+            prescripcionFisica =
+                    objectMapper.convertValue(
+                            rawPrescripcion,
+                            PrescripcionFisica.class);
+        }
+
         CrearResumenRequest request =
                 new CrearResumenRequest(
                         processInstanceId,
@@ -652,8 +744,8 @@ public class UiController {
                         evaluacionMedica.getApellidos(),
                         evaluacionMedica.getEmail(),
                         entrenamiento.getNombrePlan(),
-                        entrenamiento.getDuracionSemanas(),
-                        entrenamiento.getFrecuenciaSemanal(),
+                        prescripcionFisica.getDuracionSemanas(),
+                        prescripcionFisica.getFrecuenciaSemanal(),
                         entrenamiento.getIndicacionesGenerales(),
                         entrenamiento.getObservacionesEntrenador(),
                         entrenamiento.getEjerciciosSeleccionados()
@@ -677,14 +769,23 @@ public class UiController {
 
         String actor = authentication.getName();
 
+        boolean requiereSeguimientoMedico =
+                Boolean.TRUE.equals(
+                        seguimientoFisio.getRequiereSeguimientoMedico());
+
+        boolean cambiaPrescripcion =
+                !requiereSeguimientoMedico
+                && Boolean.TRUE.equals(
+                        seguimientoFisio.getCambiaPrescripcion());
+
+        // Mantener consistentes los datos del objeto
+        seguimientoFisio.setCambiaPrescripcion(
+                cambiaPrescripcion);
+
         Map<String, Object> out = new HashMap<>();
 
         out.put("seguimientoFisio", seguimientoFisio);
-
-        out.put(
-                "cambiaPrescripcion",
-                Boolean.TRUE.equals(
-                        seguimientoFisio.getCambiaPrescripcion()));
+        out.put("cambiaPrescripcion", cambiaPrescripcion);
 
         tasks.completeTask(containerId, id, actor, out);
 

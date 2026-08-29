@@ -20,7 +20,7 @@ public class EmailEnvio {
     private String emailDestino;
 
     @Column(length = 2000)
-    private String mensaje;
+    //private String mensaje;
 
     private String estadoEnvio;
 
@@ -77,13 +77,15 @@ public class EmailEnvio {
         this.emailDestino = emailDestino;
     }
 
-    public String getMensaje() {
+    /*public String getMensaje() {
         return mensaje;
     }
+        */
 
-    public void setMensaje(String mensaje) {
+    /*public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
+        */
 
     public String getEstadoEnvio() {
         return estadoEnvio;

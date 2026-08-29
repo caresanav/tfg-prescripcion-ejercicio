@@ -28,7 +28,7 @@
 
                 <p class="info-row">
                     <strong>Duración:</strong>
-                    <span th:text="${entrenamiento.duracionSemanas ?: '-'}">
+                    <span th:text="${prescripcionFisica.duracionSemanas ?: '-'}">
                         -
                     </span>
                     semanas
@@ -36,7 +36,7 @@
 
                 <p class="info-row">
                     <strong>Frecuencia:</strong>
-                    <span th:text="${entrenamiento.frecuenciaSemanal ?: '-'}">
+                    <span th:text="${prescripcionFisica.frecuenciaSemanal ?: '-'}">
                         -
                     </span>
                     días por semana
@@ -103,15 +103,18 @@
                 <div class="form-group">
                     <label>
                         <input type="checkbox"
-                               th:field="*{requiereSeguimientoMedico}">
+                            id="requiereSeguimientoMedico"
+                            th:field="*{requiereSeguimientoMedico}">
                         Requiere seguimiento médico
                     </label>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group"
+                    id="bloqueCambiaPrescripcion">
                     <label>
                         <input type="checkbox"
-                               th:field="*{cambiaPrescripcion}">
+                            id="cambiaPrescripcion"
+                            th:field="*{cambiaPrescripcion}">
                         Es necesario cambiar la prescripción
                     </label>
                 </div>
@@ -133,6 +136,40 @@
 
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const requiereSeguimientoMedico =
+                document.getElementById('requiereSeguimientoMedico');
+
+        const cambiaPrescripcion =
+                document.getElementById('cambiaPrescripcion');
+
+        const bloqueCambiaPrescripcion =
+                document.getElementById('bloqueCambiaPrescripcion');
+
+        function actualizarDecisiones() {
+            const requiereMedico =
+                    requiereSeguimientoMedico.checked;
+
+            bloqueCambiaPrescripcion.hidden =
+                    requiereMedico;
+
+            cambiaPrescripcion.disabled =
+                    requiereMedico;
+
+            if (requiereMedico) {
+                cambiaPrescripcion.checked = false;
+            }
+        }
+
+        requiereSeguimientoMedico.addEventListener(
+                'change',
+                actualizarDecisiones);
+
+        actualizarDecisiones();
+    });
+</script>
 
 </body>
 </html>

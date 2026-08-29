@@ -3,8 +3,8 @@ package com.tfg.model;
 public class Entrenamiento {
 
     private String nombrePlan;
-    private Integer duracionSemanas;
-    private Integer frecuenciaSemanal;
+    //private Integer duracionSemanas;
+    //private Integer frecuenciaSemanal;
     private String ejerciciosSeleccionados;
     private String indicacionesGenerales;
     private String observacionesEntrenador;
@@ -20,7 +20,7 @@ public class Entrenamiento {
         this.nombrePlan = nombrePlan;
     }
 
-    public Integer getDuracionSemanas() {
+    /*public Integer getDuracionSemanas() {
         return duracionSemanas;
     }
 
@@ -35,6 +35,7 @@ public class Entrenamiento {
     public void setFrecuenciaSemanal(Integer frecuenciaSemanal) {
         this.frecuenciaSemanal = frecuenciaSemanal;
     }
+        */
 
     public String getEjerciciosSeleccionados() {
         return ejerciciosSeleccionados;
